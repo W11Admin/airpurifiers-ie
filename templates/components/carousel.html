@@ -1,0 +1,41 @@
+<section class="heroCarousel" data-slick='{
+        "arrows": false,
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "draggable": false,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "slide": "[data-hero-slide]",
+        "touchMove": false,
+        "vertical": true
+    }'>
+    {{#each carousel.slides}}
+        <div data-hero-slide="{{@index}}">
+            <div
+                class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+                <div class="heroCarousel-image-wrapper">
+                    {{#if @first}}
+                        {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='disabled'
+                }}
+                    {{else}}
+                        {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='lazyload'
+                }}
+                    {{/if}}
+                </div>
+
+                {{#or heading text button_text}}
+                    {{> components/carousel-content}}
+                {{/or}}
+            </div>
+        </div>
+    {{/each}}
+</section>

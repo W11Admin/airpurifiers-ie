@@ -1,0 +1,15 @@
+<li class="navPage-subMenu-item">
+    <div class="navPage-subMenu-action navPages-action has-subMenu" aria-label="{{name}}">
+        Shop By Brand
+    </div>
+    <ul class="navPage-childList" id="navPages-{{id}}">
+        {{#each shop_by_brand}}
+            <li class="navPage-childList-item">
+                <a class="navPage-childList-action navPages-action" href="{{url}}" aria-label="{{name}}">
+                    {{name}}
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+
+</li>

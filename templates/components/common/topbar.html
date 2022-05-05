@@ -1,0 +1,27 @@
+<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+{{#if banners.top}}
+    <div class="banners" data-banner-location="top">
+        {{#each (limit banners.top_metadata 1)}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}"
+                data-name="{{this.banner-name}}" data-position="{{this.location}}"
+                data-banner-id="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/if}}
+<section class="topbar">
+    <ul class="topbar-list">
+        <li class="topbar-item">
+            <a href="/delivery-rates/">Free Delivery in Ireland on Orders Over €150</a>
+        </li>
+        <li class="topbar-item">
+            <a href="/why-choose-us/">Lowest Price Promise Within Ireland</a>
+        </li>
+        <li class="topbar-item">
+            <a href="/contact-us/">Call +353 (0) 1 531 4580 for Expert Advice</a>
+        </li>
+    </ul>
+</section>

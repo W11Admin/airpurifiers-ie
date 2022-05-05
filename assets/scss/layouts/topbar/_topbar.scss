@@ -1,0 +1,47 @@
+.topbar {
+    background-color: $primary-color;
+    display: flex;
+}
+
+.topbar-list {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: auto;
+    padding: 0 $container-padding;
+    text-align: center;
+    width: 100%;
+
+    @include breakpoint("medium") {
+        max-width: $layout-widthMax + ($container-padding * 1.5);
+        padding: 0 ($container-padding * 1.5);
+    }
+
+    @include breakpoint("large") {
+        max-width: $layout-widthMax + ($container-padding * 2);
+        padding: 0 ($container-padding * 2);
+    }
+}
+
+.topbar-item {
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+    width: 100%;
+
+    @include breakpoint("medium") {
+        width: unset;
+    }
+
+    a {
+        color: $color-white;
+        display: block;
+        padding: ($container-padding / 4) 0;
+        width: 100%;
+
+        &:hover {
+            color: $color-textBase;
+        }
+    }
+}
