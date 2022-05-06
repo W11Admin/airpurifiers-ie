@@ -2,7 +2,6 @@
 // PRODUCT GRID (CSS)
 // =============================================================================
 
-
 // Product grid view
 // -----------------------------------------------------------------------------
 //
@@ -11,7 +10,6 @@
 // -----------------------------------------------------------------------------
 
 .productGrid {
-
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
     font-size: 0; // 1
@@ -33,7 +31,6 @@
     }
 }
 
-
 // Product when sidebar is present
 // -----------------------------------------------------------------------------
 //
@@ -43,15 +40,14 @@
 
 .page-sidebar + .page-content {
     .productGrid {
-        .product { // 1
+        .product {
+            // 1
             @include breakpoint("small") {
                 width: grid-calc(4, $total-columns);
             }
         }
     }
-
 }
-
 
 //
 // Product Grid with masonry layout
@@ -89,7 +85,6 @@
         margin: 0;
     }
 }
-
 
 // Product grid view variation
 // -----------------------------------------------------------------------------

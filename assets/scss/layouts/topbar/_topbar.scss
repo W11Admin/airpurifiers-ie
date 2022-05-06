@@ -1,6 +1,8 @@
 .topbar {
     background-color: $primary-color;
     display: flex;
+    position: relative;
+    z-index: zIndex("highest");
 }
 
 .topbar-list {

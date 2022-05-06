@@ -11,9 +11,7 @@
             </div>
             <div class="navPage-subMenu" id="navPages-categories" aria-hidden="true" tabindex="-1">
                 <ul class="navPage-subMenu-list">
-                    {{#each categories}}
-                        {{> components/common/navigation-list}}
-                    {{/each}}
+                    {{> components/common/category-list}}
                 </ul>
             </div>
         </li>
@@ -29,7 +27,7 @@
             <div class="navPage-subMenu" id="navPages-brands" aria-hidden="true" tabindex="-1">
                 <ul class="navPage-subMenu-list">
                     {{#each shop_by_brand}}
-                        {{> components/common/navigation-list}}
+                        {{> components/common/brand-list}}
                     {{/each}}
                 </ul>
             </div>
@@ -46,7 +44,7 @@
             <div class="navPage-subMenu" id="navPages-pages" aria-hidden="true" tabindex="-1">
                 <ul class="navPage-subMenu-list">
                     {{#each pages}}
-                        {{> components/common/navigation-list}}
+                        {{> components/common/page-list}}
                     {{/each}}
                 </ul>
             </div>

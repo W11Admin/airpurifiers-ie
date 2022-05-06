@@ -75,7 +75,7 @@ $font-smoothing: antialiased;
 // We use these to control header font styles
 $header-font-family: stencilFontFamily("headings-font"), Arial, Helvetica,
     sans-serif;
-$header-font-weight: stencilFontWeight("headings-font");
+$header-font-weight: fontWeight("semibold");
 $header-font-style: null;
 $header-font-color: stencilColor("color-textHeading");
 $header-line-height: null;

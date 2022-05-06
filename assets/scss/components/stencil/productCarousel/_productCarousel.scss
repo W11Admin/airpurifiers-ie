@@ -9,15 +9,60 @@
 // -----------------------------------------------------------------------------
 
 .productCarousel {
-    @include grid-row(
-        $behavior: nest
-    ); // 1
+    @include grid-row($behavior: nest); // 1
+    margin: 0 -0.75rem 0 -0.9rem;
     min-width: 100%;
     position: relative;
-    width: 1px;
+    width: auto;
+
+    .slick-dots {
+        background-color: $color-greyLighter;
+        border-radius: 50px;
+        display: flex !important;
+        margin: 0 0.9rem;
+        overflow: hidden;
+        width: calc(100% - 1.8rem);
+
+        li {
+            border: none;
+            height: 4px;
+            overflow: hidden;
+            padding: 0;
+            pointer-events: none;
+            width: 100%;
+
+            &.slick-active {
+                & ~ * {
+                    button {
+                        width: 0px;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                }
+            }
+
+            button {
+                background-color: $color-greyLight;
+                border: none;
+                border-radius: 0;
+                display: block;
+                height: 100%;
+                transition: all 750ms ease;
+                width: 100%;
+
+                &::before,
+                .carousel-tooltip {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 
-.productCarousel-slide { // 1
+.productCarousel-slide {
+    // 1
     @include grid-column(6);
 
     @include breakpoint("small") {

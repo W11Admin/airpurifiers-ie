@@ -1,0 +1,30 @@
+<section class="section-shop-by-size">
+    <div class="text-wrapper">
+        <h2 class="section-heading">Shop by room size</h2>
+        <p>Find the perfect purifier for your needs in mere minutes by narrowing down your selection by room size. This will ensure that all the products you see will be suitable for your needs.</p>
+        <div class="carousel-controls"></div>
+    </div>
+    <div class="sizeCarousel" data-list-name="shopBySize" data-slick='{
+        "arrows": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 1,
+        "slide": "[data-size-slide]",
+        "responsive": [
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToShow": {{ columns }}
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 3
+                }
+            }
+        ]
+    }'>
+    </div>
+</section>

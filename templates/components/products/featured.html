@@ -1,9 +1,8 @@
-<h2 class="page-heading">{{lang 'products.featured' }}</h2>
-
-<ul class="productGrid productGrid--maxCol{{ columns }}" data-product-type="featured" {{#if settings.data_tag_enabled}} data-list-name="Featured Products" {{/if}}>
-    {{#each products}}
-        <li class="product">
-                {{>components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
-        </li>
-    {{/each}}
-</ul>
+<section class="section-featured-products">
+    <h2 class="section-heading">Our bestsellers</h2>
+    {{#if settings.data_tag_enabled}}
+        {{> components/products/carousel products=products list="New Products"}}
+    {{else}}
+        {{> components/products/carousel products=products}}
+    {{/if}}
+</section>

@@ -1,35 +1,45 @@
-<section class="productCarousel"
-    data-list-name="{{list}}"
-    data-slick='{
+<ul class="productCarousel" data-list-name="{{list}}" data-slick='{
+        "arrows": true,
         "infinite": false,
         "mobileFirst": true,
         "slidesToShow": 2,
         "slidesToScroll": 2,
+        "nextArrow": "#productCarousel-right",
+        "prevArrow": "#productCarousel-left",
         "slide": "[data-product-slide]",
         "responsive": [
             {
-                "breakpoint": 800,
+                "breakpoint": 1024,
                 "settings": {
-                    "slidesToShow": {{ columns }},
-                    "slidesToScroll": {{ columns }}
+                    "slidesToShow": {{ columns }}
                 }
             },
             {
-                "breakpoint": 550,
+                "breakpoint": 768,
                 "settings": {
-                    "slidesToShow": 3,
-                    "slidesToScroll": 3
+                    "slidesToShow": 3
                 }
             }
         ]
-    }'
->
+    }'>
     {{#each products}}
-    <div data-product-slide class="productCarousel-slide">
-        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
-    </div>
+        <li data-product-slide class="productCarousel-slide">
+            {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </li>
     {{/each}}
     {{#if products.length '>' 1}}
         {{> components/carousel-content-announcement}}
     {{/if}}
-</section>
+</ul>
+<div class="controls">
+    <button id="productCarousel-left">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <button id="productCarousel-right">
+        <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+
+    <a href="/air-treatment/" class="button button--primary">
+        View All
+    </a>
+</div>

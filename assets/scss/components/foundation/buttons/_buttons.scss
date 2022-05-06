@@ -3,8 +3,9 @@
 // =============================================================================
 
 .button {
+    border-radius: 50px;
     line-height: 1rem;
-    transition: all 0.15s ease;
+    transition: all 0.75s ease;
 
     + .button {
         margin-left: 0;
@@ -12,6 +13,57 @@
         @include breakpoint("medium") {
             margin-left: spacing("half");
         }
+    }
+}
+
+.button--large {
+    font-size: 17px;
+
+    &.button--primary,
+    &.button--secondary {
+        padding: spacing("third");
+        padding-left: spacing("single") + spacing("half");
+
+        &::after {
+            font-size: 22px;
+            height: spacing("single") + spacing("half");
+            width: spacing("single") + spacing("half");
+        }
+    }
+}
+
+.button--secondary {
+    background-color: $color-secondary;
+    color: $color-white;
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+}
+
+.button--primary,
+.button--secondary {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: spacing("third");
+    padding-left: spacing("single") + spacing("third");
+
+    &::after {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50%;
+        color: $color-textBase;
+        content: "\e5c8";
+        display: flex;
+        font-family: "Material Icons";
+        font-size: 20px;
+        font-weight: 600;
+        height: spacing("single") + spacing("third");
+        justify-content: center;
+        margin-left: spacing("single");
+        width: spacing("single") + spacing("third");
     }
 }
 

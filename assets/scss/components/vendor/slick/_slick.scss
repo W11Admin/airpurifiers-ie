@@ -5,7 +5,6 @@
 //
 // -----------------------------------------------------------------------------
 
-
 //
 // Next and Previous buttons for all carousels
 //
@@ -52,12 +51,12 @@
     }
 
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, "next");
+        @include carousel-arrow-color($slick-arrow-color, "next");
     }
 
     &:hover {
         &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, "next");
+            @include carousel-arrow-color($slick-arrow-color-hover, "next");
         }
     }
 }
@@ -70,12 +69,12 @@
     }
 
     &::before {
-        @include carousel-arrow-color( $slick-arrow-color, "prev");
+        @include carousel-arrow-color($slick-arrow-color, "prev");
     }
 
     &:hover {
         &::before {
-            @include carousel-arrow-color( $slick-arrow-color-hover, "prev");
+            @include carousel-arrow-color($slick-arrow-color-hover, "prev");
         }
     }
 }
@@ -85,7 +84,6 @@
     width: 100%;
 }
 
-
 //
 // Carousel dots
 //
@@ -94,7 +92,8 @@
 // 2. Nesting depth due to plugin css
 // -----------------------------------------------------------------------------
 
-.slick-dots {  // 2
+.slick-dots {
+    // 2
     margin: 0;
 
     li {
@@ -109,7 +108,7 @@
         }
 
         button {
-            border: 1px solid $slick-dot-color;
+            background-color: $slick-dot-color;
             display: inline-block;
             margin: 0;
             padding: 0;
@@ -119,7 +118,7 @@
 
             &:hover {
                 &::before {
-                    background: $slick-dot-color;
+                    background: $primary-color;
                 }
             }
         }
@@ -137,7 +136,6 @@
             }
         }
     }
-
 }
 
 //
@@ -147,7 +145,6 @@
     position: relative;
 }
 
-
 //
 // disabled carousel elements
 // -----------------------------------------------------------------------------
@@ -155,7 +152,6 @@
     cursor: $cursor-default-value;
     opacity: 0.1;
 }
-
 
 //
 // Slick track
@@ -173,7 +169,6 @@ div.slick-slider {
     width: 1px;
     *width: 100%;
 }
-
 
 //
 // Carousel tooltips for buttons and bullets

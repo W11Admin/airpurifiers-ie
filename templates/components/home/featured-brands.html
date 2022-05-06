@@ -1,0 +1,50 @@
+<section class="section-featured-brands">
+    <h2 class="section-heading">Our brands</h2>
+    <ul class="brandCarousel" data-list-name="featuredBrands" data-slick='{
+        "arrows": true,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 1,
+        "nextArrow": "#brandCarousel-right",
+        "prevArrow": "#brandCarousel-left",
+        "slide": "[data-brand-slide]",
+        "responsive": [
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": 4
+                }
+            },
+            {
+                "breakpoint": 768,
+                "settings": {
+                    "slidesToShow": 3
+                }
+            }
+        ]
+    }'>
+        {{#each shop_by_brand}}
+            <li class="brandCarousel-slide">
+                <article class="brand-card">
+                    <div class="brand-card-image-wrapper">
+                        <img src="{{cdn (concat (concat 'webdav:images/brand-carousel/' name) '-card-bg.jpg')}}">
+                    </div>
+                    <span class="brand-name">{{name}}</span>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+    <div class="controls">
+        <button id="carousel-left">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <button id="carousel-right">
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+
+        <a href="/air-treatment/" class="button button--primary">
+            View All
+        </a>
+    </div>
+</section>

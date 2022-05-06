@@ -12,15 +12,6 @@ body {
     padding-top: 0;
 }
 
-.body {
-    margin-bottom: spacing("double") * 2;
-    margin-top: spacing("single"); // 1
-
-    @include breakpoint("medium") {
-        margin-top: spacing("single") + spacing("base"); // 1
-    }
-}
-
 .page {
     @include grid-row($behavior: nest);
 }
