@@ -22,10 +22,11 @@ $toggle-spacing: spacing("single") + spacing("half");
 }
 
 .toggleLink {
-    color: stencilColor("color-textSecondary");
+    color: stencilColor("color-textBase");
+    transition: color 750ms ease;
 
     &:hover {
-        color: stencilColor("color-textSecondary--hover");
+        color: stencilColor("color-primary");
     }
 
     .toggle-title & {

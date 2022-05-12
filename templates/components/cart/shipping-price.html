@@ -1,0 +1,11 @@
+{{#if shipping_cost}}
+    <div class="cart-total-value">
+        <div class="subtotal shipping-estimate-show">
+            <span class="shipping-estimate-value">{{shipping_cost.formatted}}</span>
+        </div>
+    </div>
+{{else}}
+    <div class="cart-total-value">
+        TBC
+    </div>
+{{/if}}

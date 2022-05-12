@@ -1,23 +1,18 @@
-<div class="facetedSearch-refineFilters sidebarBlock">
-    <h2 class="sidebarBlock-heading">
-        {{lang 'search.faceted.selected.title'}}
-    </h2>
-
-    {{#if items}}
+<strong class="sidebarBlock-heading">
+    {{lang 'search.faceted.selected.title'}}
+    <span class="facetedSearch-close"></span>
+</strong>
+{{#if this.items}}
+    <div class="facetedSearch-selected">
         <ul class="inlineList inlineList--labels">
-            {{#each items}}
+            {{#each this.items}}
                 <li>
-                    <a href="{{url}}"
-                       class="facetLabel"
-                       rel="nofollow"
-                       data-faceted-search-facet
-                    >
+                    <a href="{{ url }}" class="facetLabel" rel="nofollow" data-faceted-search-facet>
                         {{#if facet '===' 'rating'}}
                             {{lang 'search.faceted.selected.rating-label' rating=title}}
                         {{else}}
-                            {{{sanitize title}}}
+                            {{{ sanitize title }}}
                         {{/if}}
-
                         <svg class="icon">
                             <use xlink:href="#icon-close" />
                         </svg>
@@ -25,13 +20,10 @@
                 </li>
             {{/each}}
         </ul>
-    {{else}}
-        <p>{{lang 'search.faceted.selected.no-filters'}}</p>
-    {{/if}}
-
-    {{#if remove_all_url}}
-        <a href="{{remove_all_url}}" data-faceted-search-facet>
-            {{lang 'search.faceted.selected.clear-all'}}
-        </a>
-    {{/if}}
-</div>
+        {{#if remove_all_url}}
+            <a class="clear-link" href="{{ remove_all_url }}" data-faceted-search-facet>
+                {{lang 'search.faceted.selected.clear-all'}}
+            </a>
+        {{/if}}
+    </div>
+{{/if}}

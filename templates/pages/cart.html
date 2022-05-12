@@ -3,55 +3,51 @@ cart: true
 ---
 {{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
-{{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
-<div class="page">
+    {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
 
-    <div class="page-content" data-cart>
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/cart/page-title}}
 
-        {{> components/cart/page-title}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-        <div data-cart-status>
-            {{> components/cart/status-messages}}
-        </div>
-
-        {{#if cart.items.length}}
-            <div class="loadingOverlay"></div>
-
-            <div data-cart-content class="cart-content-padding-right">
-                {{> components/cart/content}}
+    <main class="page">
+        <div class="page-content" data-cart>
+            <div data-cart-status>
+                {{> components/cart/status-messages}}
             </div>
+            {{#if cart.items.length}}
+                <div class="cart-content">
+                    <div class="loadingOverlay"></div>
+                    <div class="cart-items" data-cart-content>
+                        {{> components/cart/content}}
+                    </div>
 
-            <div data-cart-totals class="cart-content-padding-right">
-                {{> components/cart/totals}}
-            </div>
+                    <div class="cart-delivery">
+                        <div class="cart-delivery-content">
+                            <h2>Delivery Estimator</h2>
+                            <p>Please fill in all relevant details for an accurate delivery quote. If you have no
+                                Post/Zip
+                                Code, instead
+                                please enter 123 into the input box before generating your estimate.</p>
+                            {{> components/cart/shipping-estimator cart.shipping_handling}}
+                        </div>
+                    </div>
 
-            {{{region name="cart_below_totals"}}}
-
-            {{#if cart.show_primary_checkout_button}}
-                <div class="cart-actions cart-content-padding-right">
-                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
-                    {{#if cart.show_multiple_address_shipping}}
-                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
-                            {{lang 'cart.preview.checkout_multiple'}}
-                        </a>
-                    {{/if}}
+                    <div class="cart-totals">
+                        <div class="cart-totals-content" data-cart-totals>
+                            {{> components/cart/totals}}
+                        </div>
+                    </div>
                 </div>
             {{else}}
-                <div class="cart-actions cart-content-padding-right">
-                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                <div class="emptyMessage">
+                    <h3>No Items Added</h3>
+                    <p>Your shopping cart is currently empty. Add available items from any of our collections to view
+                        your cart and
+                        proceed to the checkout.</p>
+                    <a class="button button--primary" href="/">Continue Shopping</a>
                 </div>
             {{/if}}
-
-            <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
-                {{> components/cart/additional-checkout-buttons}}
-            </div>
-
-        {{else}}
-            <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
-        {{/if}}
-
-    </div>
-</div>
+        </div>
+    </main>
 {{/partial}}
 {{> layout/base}}

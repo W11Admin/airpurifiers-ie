@@ -82,7 +82,7 @@ $header-line-height: null;
 $header-top-margin: spacing("double");
 $header-bottom-margin: spacing("half");
 $header-text-rendering: null;
-$header-letter-spacing: letterSpacing("small");
+$header-letter-spacing: -0.5px;
 
 // We use these to control header font sizes
 $h1-font-size: fontSize("largest");
@@ -126,8 +126,8 @@ $code-padding: null;
 // We use these to style anchors
 $anchor-text-decoration: underline;
 $anchor-text-decoration-hover: null;
-$anchor-font-color: color("link", "text");
-$anchor-font-color-hover: color("link", "text-hover");
+$anchor-font-color: stencilColor("color-primary");
+$anchor-font-color-hover: stencilColor("color-secondary");
 
 // We use these to style the <hr> element
 $hr-border-width: container("borderSize");

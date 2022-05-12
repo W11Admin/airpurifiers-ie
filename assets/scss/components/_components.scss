@@ -2,13 +2,11 @@
 // COMPONENTS
 // =============================================================================
 
-
 // Vendor components
 // -----------------------------------------------------------------------------
 
 // Slick carousel
 @import "vendor/slick/component";
-
 
 // Foundation components
 // -----------------------------------------------------------------------------
@@ -58,7 +56,6 @@
 // Lazy Load
 @import "foundation/lazyLoad/component";
 
-
 // Citadel components
 // -----------------------------------------------------------------------------
 
@@ -79,7 +76,6 @@
 
 // Action bar
 @import "citadel/actionBar/component";
-
 
 // Stencil components
 // -----------------------------------------------------------------------------
@@ -110,6 +106,12 @@
 
 // Product Carousel
 @import "stencil/productCarousel/component";
+
+// Shop By Size Carousel
+@import "stencil/sizeCarousel/component";
+
+// Brand Carousel
+@import "stencil/brandCarousel/component";
 
 // Quick View
 @import "stencil/quickView/component";

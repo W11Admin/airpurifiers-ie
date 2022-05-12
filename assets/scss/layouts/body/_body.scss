@@ -14,6 +14,19 @@ body {
 
 .page {
     @include grid-row($behavior: nest);
+    margin-top: 40px;
+
+    @include breakpoint("xsmall") {
+        margin-top: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-top: 60px;
+    }
+
+    @include breakpoint("medium") {
+        margin-top: 80px;
+    }
 }
 
 .page-content,

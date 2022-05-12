@@ -1,0 +1,141 @@
+// BRAND CAROUSEL
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles the brand carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display brand
+//
+// -----------------------------------------------------------------------------
+
+.sizeCarousel {
+    position: relative;
+    width: 100%;
+
+    @include breakpoint("medium") {
+        width: 66.6%;
+    }
+
+    @include breakpoint("large") {
+        width: 75%;
+    }
+
+    &.slick-slider {
+        margin: 0;
+    }
+
+    &-controls {
+        align-items: center;
+        display: flex;
+
+        .slick-arrow {
+            align-items: center;
+            background-color: $color-secondary;
+            border-radius: 50%;
+            color: $color-white;
+            display: flex;
+            height: 40px;
+            justify-content: center;
+            padding: 0;
+            transition: background 750ms ease, opacity 250ms ease;
+            width: 40px;
+
+            &:hover {
+                background-color: $color-secondaryDark;
+            }
+
+            &:first-child {
+                margin-right: 10px;
+            }
+
+            &.slick-disabled {
+                opacity: 0.4;
+            }
+
+            @include breakpoint("xsmall") {
+                height: 45px;
+                width: 45px;
+
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        .carousel-tooltip {
+            display: none;
+        }
+    }
+}
+
+.sizeCarousel-sidebar {
+    align-items: center;
+    background-color: $color-textBase;
+    border-right: 1px solid $color-white;
+    color: $color-white;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @include breakpoint("medium") {
+        width: 33.4%;
+    }
+
+    @include breakpoint("large") {
+        width: 25%;
+    }
+
+    &-inner {
+        max-width: 330px;
+    }
+
+    .section-heading {
+        color: $color-white;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 35px 0 50px 0;
+    }
+}
+
+.sizeCarousel-slide {
+    border-right: 1px solid $color-white;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+        .sizeCarousel-image-wrapper {
+            transform: translate3d(0, 0, 0) scale(1.08);
+        }
+    }
+}
+
+.sizeCarousel-image-wrapper {
+    height: 100%;
+    margin: 0;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition: transform 750ms ease;
+    width: 100%;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.sizeCarousel-content {
+    align-items: flex-start;
+    bottom: 50px;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 60px;
+    position: absolute;
+
+    .sizeCarousel-name {
+        color: $color-white;
+        margin: 0 0 25px 0;
+    }
+}

@@ -2,123 +2,191 @@
 // FACET SEARCH (CSS)
 // =============================================================================
 
-
 // Faceted search toggle
 // -----------------------------------------------------------------------------
 //
 // 1. Do not show if viewport is over "medium" breakpoint
 //
 // -----------------------------------------------------------------------------
-.facetedSearch-toggle {
-    @include grid-row;
-    border: $facetedSearch-toggle-border;
-    border-radius: $facetedSearch-toggle-borderRadius;
-    border-width: $facetedSearch-toggle-borderWidth;
-    display: block;
-    margin-bottom: $facetedSearch-toggle-verticalSpacing;
-    padding: $facetedSearch-toggle-padding;
+
+.facetedSearch {
+    background-color: $color-greyLightest;
+    height: 100%;
+    left: -80px;
+    margin: 0;
+    max-height: 100vh;
+    max-width: 320px;
+    opacity: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    visibility: hidden;
+    width: 90%;
+    z-index: zIndex("highest");
+
+    @include breakpoint("xsmall") {
+        max-width: 350px;
+    }
 
     @include breakpoint("medium") {
-        display: none !important; // 1
+        border-radius: $global-radius;
+        left: 0;
+        overflow: visible;
+        margin-bottom: spacing("single");
+        max-height: 100%;
+        max-width: 100%;
+        opacity: 1;
+        padding: (spacing("single") - spacing("third")) spacing("single");
+        position: relative;
+        visibility: visible;
+        width: 100%;
+        z-index: 0;
+    }
+
+    @include breakpoint("large") {
+        padding: spacing("single") (spacing("single") + spacing("third"));
     }
 
     &.is-open {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        margin-bottom: 0;
-    }
-}
-
-.facetedSearch-toggle-text,
-.facetedSearch-toggle-indicator {
-    display: block;
-    font-weight: normal;
-}
-
-.facetedSearch-toggle-text {
-    @include grid-column(7);
-    padding: 0;
-    text-align: left;
-}
-
-.facetedSearch-toggle-indicator {
-    @include grid-column(5);
-    font-weight: bold;
-    padding: 0;
-    text-align: right;
-}
-
-
-// Faceted search nav list
-// -----------------------------------------------------------------------------
-//
-// 1. Do not show if viewport is over "medium" breakpoint
-//
-// -----------------------------------------------------------------------------
-.facetedSearch-navList {
-    display: none;
-
-    @include breakpoint("medium") {
-        display: block !important; // 1
+        left: 0;
+        opacity: 1;
+        visibility: visible;
     }
 
-    &.is-open {
-        display: block;
+    &::-webkit-scrollbar {
+        width: 4px;
 
-        .accordion--navList,
-        .accordion-block:first-child .accordion-navigation {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+        &-track {
+            background: $body-bg;
+        }
+
+        &-thumb {
+            background: stencilColor("color-primary");
+
+            &:hover {
+                background: stencilColor("color-secondary");
+            }
         }
     }
 
-    .facetedSearch-toggle + &,
-    .sidebarBlock + & {
-        margin-top: $facetedSearch-toggle-verticalSpacing;
+    &-toggle {
+        @include breakpoint("medium") {
+            display: none;
+        }
     }
 
-
-    .facetedSearch-toggle + &.is-open,
-    .sidebarBlock + &.is-open {
-        margin-top: -1px;
+    &-selected {
+        margin-bottom: spacing("double");
+        padding: 10px 40px 0 40px;
 
         @include breakpoint("medium") {
-            margin-top: $facetedSearch-toggle-verticalSpacing;
+            padding: 0;
+        }
+
+        a.clear-link {
+            color: $color-primary;
+
+            &:hover {
+                color: $color-secondary;
+            }
         }
     }
 
-    .navList--inner {
-        margin-left: spacing("single");
+    .rating--small {
+        margin-right: 5px;
+        position: relative;
+        top: -1px;
+    }
+
+    .button--small {
+        color: $color-primary;
+        letter-spacing: 0;
+        font-size: 1rem;
+        margin-top: 15px;
+        padding: 0 5px;
+        text-align: left;
+        text-transform: none;
+        transition: color 750ms ease;
+        width: 100%;
+
+        &:hover,
+        &:active {
+            background-color: transparent;
+            color: $color-secondary;
+        }
+    }
+
+    .sidebarBlock-heading {
+        align-items: center;
+        display: flex;
+        font-size: 20px;
+        margin: 0;
+
+        @include breakpoint("medium") {
+            margin: 0 0 spacing("single") 0;
+        }
+    }
+
+    .form-minMaxRow .form-field {
+        width: 50%;
     }
 }
 
-.facet-quick-heading {
-    text-transform: capitalize;
-}
+.facetedSearch-close {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-left: auto;
+    position: relative;
+    transition: transform 500ms ease;
+    -webkit-transition: transform 500ms ease;
+    width: 50px;
 
-.facetedSearch-optionColumns {
-    column-count: 3;
-    column-gap: 20px;
-}
+    &:hover {
+        transform: scale(1.1);
 
+        &::after,
+        &::before {
+            background-color: $color-primary;
+        }
+    }
 
-// Faceted search refine filters
-// -----------------------------------------------------------------------------
-//
-// 1. Only show if viewport is over "medium" breakpoint
-//
-// -----------------------------------------------------------------------------
-.facetedSearch-refineFilters {
-    display: none;
+    &::after,
+    &::before {
+        background-color: $color-textBase;
+        bottom: auto;
+        content: "";
+        height: 3px;
+        position: absolute;
+        top: auto;
+        transition: background 500ms ease;
+        -webkit-transition: background 500ms ease;
+        -moz-transition: background 500ms ease;
+        width: 24px;
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
 
     @include breakpoint("medium") {
-        display: block; // 1
+        display: none;
     }
 }
 
-// Facted search ratings
-.facetedSearch-content--rating {
-    .is-selected {
-        font-weight: bold;
+.facetedSearch-navList {
+    padding: 10px 40px 40px 40px;
+
+    @include breakpoint("medium") {
+        padding: 0;
     }
 }

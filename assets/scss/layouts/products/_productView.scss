@@ -2,84 +2,328 @@
 // PRODUCT VIEW (CSS)
 // =============================================================================
 
-
-// Product view layout
-// -----------------------------------------------------------------------------
-
-.productView {
-    @include grid-row($behavior: "nest");
-
+// Product view sections
+.productView-section {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    margin-left: -(spacing("base"));
-    margin-right: -(spacing("base"));
+    justify-content: center;
+    margin: auto;
+    max-width: 1400px;
+    padding: 0 20px 20px 20px;
 
     @include breakpoint("medium") {
-        display: block;
+        flex-direction: row;
+        padding: 0 40px 40px 40px;
     }
 
-    .modal & {
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-}
+    &Alt {
+        background-color: $container-fill-base;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
 
-.productView--quickView {
-    .socialLinks-item--print {
-        display: none;
-    }
-}
+        @include breakpoint("xsmall") {
+            padding: 20px;
+        }
 
-.productView-images {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-
-    @include breakpoint("medium") {
-        width: grid-calc(6, $total-columns);
-    }
-}
-
-.productView-details {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-
-    @include breakpoint("medium") {
-        clear: right;
-        float: right;
-        width: grid-calc(6, $total-columns);
-    }
-
-    .productView--quickView & {
-        position: relative;
-    }
-
-    &.product-data {
-        order: -1;
-    }
-}
-
-.productView-description {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-    position: relative;
-    z-index: 1;
-
-    .productView-title {
-        border-bottom: container("border");
-        margin-bottom: spacing("base");
-        padding-left: spacing("base");
-        padding-right: spacing("base");
-    }
-
-    .productView-description {
         @include breakpoint("medium") {
-            clear: both;
-            float: none;
+            padding: 40px;
+        }
+    }
+
+    &Title {
+        font-size: 28px;
+        line-height: 1.1;
+        margin-bottom: 25px;
+        width: 100%;
+    }
+}
+
+// Product view details
+.productView-details {
+    margin: 30px auto 0 auto;
+    max-width: 550px;
+    padding: 0 10px;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        margin: auto 0 auto 40px;
+        max-width: 700px;
+        padding: 0;
+        text-align: left;
+    }
+
+    @include breakpoint("xlarge") {
+        margin: auto 0 auto 100px;
+    }
+}
+
+// Product view content
+.productView-description {
+    background-color: $body-bg;
+    border-radius: $global-radius;
+    margin: 0;
+    padding: 20px 25px;
+    width: 100%;
+
+    h3 {
+        font-size: 20px;
+        margin: 30px 0 15px 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    .Sirv {
+        height: auto;
+    }
+
+    .video-wrapper {
+        border-radius: $global-radius;
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        padding-top: 0px;
+        position: relative;
+        width: 100%;
+
+        iframe {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
             width: 100%;
+        }
+    }
+
+    @include breakpoint("xsmall") {
+        padding: 25px 30px;
+    }
+
+    @include breakpoint("medium") {
+        margin: 0 20px 0 0;
+        max-width: 700px;
+        padding: 30px 35px;
+        width: calc(100% - 400px);
+    }
+}
+
+.delivery-banner {
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+
+    &-desktop {
+        display: none;
+
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+
+    &-tablet {
+        display: none;
+        margin-bottom: 20px;
+
+        @include breakpoint("xsmall") {
+            display: block;
+        }
+
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
+
+    &-mobile {
+        display: block;
+        margin-bottom: 10px;
+
+        @include breakpoint("xsmall") {
+            display: none;
+        }
+    }
+}
+
+.guide-banner {
+    margin-top: 10px;
+    width: 100%;
+
+    @include breakpoint("xsmall") {
+        margin-top: 20px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    &-desktop {
+        display: none;
+
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+
+    &-tablet {
+        display: none;
+
+        @include breakpoint("xsmall") {
+            display: block;
+        }
+
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
+
+    &-mobile {
+        display: block;
+
+        @include breakpoint("xsmall") {
+            display: none;
+        }
+    }
+}
+
+.productView-specification {
+    align-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+
+    &Section {
+        background-color: $body-bg;
+        border-radius: $global-radius;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 20px 25px 0 25px;
+        width: 100%;
+
+        &.lastSection {
+            padding: 20px 25px 10px 25px;
+        }
+
+        @include breakpoint("xsmall") {
+            margin-top: 20px;
+            padding: 25px 30px 0 30px;
+
+            &.lastSection {
+                padding: 25px 30px 15px 30px;
+            }
+        }
+
+        @include breakpoint("medium") {
+            padding: 30px 35px 0 35px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &.lastSection {
+                padding: 30px 35px 20px 35px;
+            }
+        }
+    }
+
+    dl {
+        display: flex;
+        margin: 0 20px 30px 0;
+
+        &.wide {
+            width: 100%;
+        }
+
+        dt {
+            font-weight: 500;
+            margin: 0 5px 0 0;
+        }
+
+        dd {
+            margin: 0;
+        }
+    }
+
+    span {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    @include breakpoint("medium") {
+        max-width: 380px;
+    }
+}
+
+// Product view reviews
+.productView-review {
+    max-width: 1140px;
+    padding: 35px 10px 0 10px;
+    width: 100%;
+
+    @include breakpoint("xsmall") {
+        padding: 35px 20px 0 20px;
+    }
+}
+
+// Product view related products
+.productView-related {
+    margin: auto;
+    max-width: 1400px;
+    width: 100%;
+
+    .productView-sectionTitle {
+        margin-top: 15px;
+        text-align: center;
+
+        @include breakpoint("xsmall") {
+            margin-top: 5px;
+        }
+
+        @include breakpoint("medium") {
+            margin-top: 0;
+        }
+    }
+
+    .productGrid {
+        max-width: 1400px;
+
+        .product {
+            &:nth-last-child(-n + 1) {
+                display: none;
+            }
+
+            @include breakpoint("small") {
+                &:nth-last-child(-n + 2) {
+                    display: none;
+                }
+            }
+
+            @include breakpoint("medium") {
+                width: grid-calc(3, $total-columns);
+
+                &:nth-last-child(-n + 2) {
+                    display: block;
+                }
+
+                &:nth-last-child(-n + 1) {
+                    display: none;
+                }
+            }
+
+            @include breakpoint("xlarge") {
+                width: grid-calc(2, 10);
+
+                &:nth-last-child(-n + 1) {
+                    display: block;
+                }
+            }
         }
     }
 }

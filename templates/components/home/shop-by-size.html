@@ -1,30 +1,115 @@
-<section class="section-shop-by-size">
-    <div class="text-wrapper">
-        <h2 class="section-heading">Shop by room size</h2>
-        <p>Find the perfect purifier for your needs in mere minutes by narrowing down your selection by room size. This will ensure that all the products you see will be suitable for your needs.</p>
-        <div class="carousel-controls"></div>
+<section class="home-shopBySize">
+    <div class="sizeCarousel-sidebar">
+        <div class="sizeCarousel-sidebar-inner">
+            <h2 class="section-heading">Shop by room size</h2>
+            <p>Find the perfect purifier for your needs in mere minutes by narrowing down your selection by room size.
+                This
+                will ensure that all the products you see will be suitable for your needs.</p>
+            <div class="sizeCarousel-controls">
+                <button id="sizeCarousel-left">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <button id="sizeCarousel-right">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="sizeCarousel" data-list-name="shopBySize" data-slick='{
+    <ul class="sizeCarousel" data-list-name="shopBySize" data-slick='{
         "arrows": false,
         "infinite": true,
+        "centerMode": true,
+        "dots": false,
         "mobileFirst": true,
-        "slidesToShow": 2,
+        "slidesToShow": 1,
         "slidesToScroll": 1,
+        "nextArrow": "#sizeCarousel-right",
+        "prevArrow": "#sizeCarousel-left",
         "slide": "[data-size-slide]",
         "responsive": [
             {
-                "breakpoint": 800,
+                "breakpoint": 1280,
                 "settings": {
-                    "slidesToShow": {{ columns }}
+                    "arrows": true,
+                    "centerMode": false,
+                    "slidesToShow": 3
                 }
             },
             {
-                "breakpoint": 550,
+                "breakpoint": 768,
                 "settings": {
-                    "slidesToShow": 3
+                    "arrows": true,
+                    "centerMode": false,
+                    "slidesToShow": 2
+                }
+            },
+            {
+                "breakpoint": 580,
+                "settings": {
+                    "slidesToShow": 2
                 }
             }
         ]
     }'>
-    </div>
+        <li data-size-slide class="sizeCarousel-slide">
+            <figure class="sizeCarousel-image-wrapper">
+                <img src="{{cdn 'webdav:images/size-carousel/small-room-card-bg.jpg'}}">
+            </figure>
+            <div class="sizeCarousel-content">
+                <span class="sizeCarousel-dimensions">0 - 20m²</span>
+                <h3 class="sizeCarousel-name">Small Rooms</h3>
+                <a href="/air-purifiers/" class="button button--secondary">
+                    Discover Range
+                </a>
+            </div>
+        </li>
+        <li data-size-slide class="sizeCarousel-slide">
+            <figure class="sizeCarousel-image-wrapper">
+                <img src="{{cdn 'webdav:images/size-carousel/small-room-card-bg.jpg'}}">
+            </figure>
+            <div class="sizeCarousel-content">
+                <span class="sizeCarousel-dimensions">20 - 40m²</span>
+                <h3 class="sizeCarousel-name">Medium Rooms</h3>
+                <a href="/air-purifiers/" class="button button--secondary">
+                    Discover Range
+                </a>
+            </div>
+        </li>
+        <li data-size-slide class="sizeCarousel-slide">
+            <figure class="sizeCarousel-image-wrapper">
+                <img src="{{cdn 'webdav:images/size-carousel/small-room-card-bg.jpg'}}">
+            </figure>
+            <div class="sizeCarousel-content">
+                <span class="sizeCarousel-dimensions">40 - 60m²</span>
+                <h3 class="sizeCarousel-name">Large Rooms</h3>
+                <a href="/air-purifiers/" class="button button--secondary">
+                    Discover Range
+                </a>
+            </div>
+        </li>
+        <li data-size-slide class="sizeCarousel-slide">
+            <figure class="sizeCarousel-image-wrapper">
+                <img src="{{cdn 'webdav:images/size-carousel/small-room-card-bg.jpg'}}">
+            </figure>
+            <div class="sizeCarousel-content">
+                <span class="sizeCarousel-dimensions">60 - 80m²</span>
+                <h3 class="sizeCarousel-name">X-Large Rooms</h3>
+                <a href="/air-purifiers/" class="button button--secondary">
+                    Discover Range
+                </a>
+            </div>
+        </li>
+        <li data-size-slide class="sizeCarousel-slide">
+            <figure class="sizeCarousel-image-wrapper">
+                <img src="{{cdn 'webdav:images/size-carousel/small-room-card-bg.jpg'}}">
+            </figure>
+            <div class="sizeCarousel-content">
+                <span class="sizeCarousel-dimensions">80 - 100m²</span>
+                <h3 class="sizeCarousel-name">Commercial Spaces</h3>
+                <a href="/air-purifiers/" class="button button--secondary">
+                    Discover Range
+                </a>
+            </div>
+        </li>
+    </ul>
 </section>

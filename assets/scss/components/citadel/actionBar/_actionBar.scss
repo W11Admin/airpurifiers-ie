@@ -2,41 +2,120 @@
 // ACTION BAR (CSS)
 // =============================================================================
 
+.actionBar {
+    background-color: $color-greyLightest;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 spacing("single") 0;
+    width: 100%;
 
-.actionBar-section {
-    .form-field {
-        background-color: $input-bg-color;
-        border: $actionBar-form-field-border;
-        border-radius: $actionBar-form-field-radius;
+    @include breakpoint("medium") {
+        border-radius: $global-radius;
+        padding: (spacing("single") - spacing("third")) spacing("single");
+        padding-bottom: spacing("single");
+    }
 
-        &:hover {
-            border-color: stencilColor("input-border-color-active");
+    @include breakpoint("large") {
+        padding: spacing("single") (spacing("single") + spacing("third"));
+        padding-bottom: (spacing("single") + spacing("third"));
+    }
+
+    &-section {
+        float: none;
+        width: calc(50% - 5px);
+
+        @include breakpoint("xsmall") {
+            width: calc(50% - 10px);
+        }
+
+        @include breakpoint("small") {
+            width: 250px;
+        }
+
+        @include breakpoint("medium") {
+            width: 100%;
+        }
+
+        .form-field {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .form-label {
+            color: $color-textBase;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+
+            @include breakpoint("medium") {
+                margin: 0 0 spacing("half") 0;
+            }
+        }
+
+        .form-input,
+        .form-select {
+            background-color: $color-white;
+            background-position: right 14px top 15px;
+            background-size: 18px;
+            padding: 15px 40px 16px 20px;
+            width: 100%;
+
+            @include breakpoint("medium") {
+                background-position: right 16px top 13px;
+                border: 1px solid $color-greyLighter;
+                padding: 14px 40px 14px 20px;
+                width: 100%;
+            }
         }
     }
 
-    .form-label {
-        color: $actionBar-form-label-color;
-        font-size: $actionBar-form-label-fontSize;
-        line-height: $actionBar-form-label-lineHeight;
-        margin-bottom: 0;
-        padding-left: $actionBar-form-label-padding;
+    .button {
+        margin-right: 10px;
+        width: calc(50% - 5px);
+
+        &::after {
+            background-color: $color-black;
+            content: "";
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            transition: all 500ms ease;
+            -webkit-transition: all 500ms ease;
+            visibility: hidden;
+            width: 100%;
+            z-index: zIndex("higher");
+        }
+
+        &.is-open {
+            &::after {
+                opacity: 0.7;
+                visibility: visible;
+            }
+        }
+
+        @include breakpoint("xsmall") {
+            margin-right: 20px;
+            width: calc(50% - 10px);
+        }
+
+        @include breakpoint("small") {
+            width: auto;
+        }
     }
 
-    .form-input,
-    .form-select {
-        border: 0;
-        padding-left: $actionBar-form-input-padding;
+    .pagination {
+        display: none;
+        margin: 0 0 0 auto;
         width: auto;
-    }
 
-    .form-label,
-    .form-input,
-    .form-select {
-        display: inline-block;
-    }
+        @include breakpoint("medium") {
+            display: block;
+        }
 
-    .form-select {
-        color: stencilColor("color-textLink");
-        height: $input-small-height - remCalc($input-border-width * 2);
+        .pagination-list {
+            padding: 0;
+        }
     }
 }

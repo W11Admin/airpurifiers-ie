@@ -1,14 +1,12 @@
-// PRODUCT CAROUSEL
+// BRAND CAROUSEL
 // -----------------------------------------------------------------------------
 //
-// Purpose: Styles the product carousel component, which basically adds extras to the
-// vendor slick carousel, to specifically display product
-//
-// 1. If there's no JS layout the products out based on the grid.
+// Purpose: Styles the brand carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display brand
 //
 // -----------------------------------------------------------------------------
 
-.productCarousel {
+.brandCarousel {
     @include grid-row($behavior: nest); // 1
     margin: 0 -0.75rem 0 -0.9rem;
     min-width: 100%;
@@ -37,8 +35,12 @@
             height: 40px;
             justify-content: center;
             padding: 0;
-            transition: opacity 250ms ease;
+            transition: background 750ms ease, opacity 250ms ease;
             width: 40px;
+
+            &:hover {
+                background-color: $color-primaryDark;
+            }
 
             &:first-child {
                 margin-right: 10px;
@@ -115,8 +117,7 @@
     }
 }
 
-.productCarousel-slide {
-    // 1
+.brandCarousel-slide {
     @include grid-column(6);
 
     @include breakpoint("small") {
@@ -130,12 +131,37 @@
     @include breakpoint("large") {
         width: grid-calc(2, $total-columns);
     }
+}
 
-    .card {
-        margin-bottom: 0;
+.brand-card {
+    border-radius: $global-radius;
+    display: block;
+    overflow: hidden;
+    position: relative;
 
-        .card-title {
-            overflow-wrap: break-word;
+    &:hover {
+        .brand-card-image-wrapper {
+            transform: translate3d(0, 0, 0) scale(1.08);
         }
+    }
+
+    &-image-wrapper {
+        margin: 0;
+        transform: translate3d(0, 0, 0) scale(1);
+        transition: transform 750ms ease;
+        width: 100%;
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .brand-name {
+        bottom: 50px;
+        color: $color-white;
+        font-size: 20px;
+        font-weight: 500;
+        left: 60px;
+        position: absolute;
     }
 }

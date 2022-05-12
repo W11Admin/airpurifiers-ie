@@ -1,8 +1,8 @@
-<section class="section-featured-brands">
+<section class="home-featuredBrands">
     <h2 class="section-heading">Our brands</h2>
     <ul class="brandCarousel" data-list-name="featuredBrands" data-slick='{
         "arrows": true,
-        "infinite": true,
+        "infinite": false,
         "mobileFirst": true,
         "slidesToShow": 2,
         "slidesToScroll": 1,
@@ -25,21 +25,21 @@
         ]
     }'>
         {{#each shop_by_brand}}
-            <li class="brandCarousel-slide">
-                <article class="brand-card">
-                    <div class="brand-card-image-wrapper">
+            <li data-brand-slide class="brandCarousel-slide">
+                <a class="brand-card" href="{{url}}">
+                    <figure class="brand-card-image-wrapper">
                         <img src="{{cdn (concat (concat 'webdav:images/brand-carousel/' name) '-card-bg.jpg')}}">
-                    </div>
+                    </figure>
                     <span class="brand-name">{{name}}</span>
-                </article>
+                </a>
             </li>
         {{/each}}
     </ul>
-    <div class="controls">
-        <button id="carousel-left">
+    <div class="brandCarousel-controls">
+        <button id="brandCarousel-left">
             <span class="material-symbols-outlined">arrow_back</span>
         </button>
-        <button id="carousel-right">
+        <button id="brandCarousel-right">
             <span class="material-symbols-outlined">arrow_forward</span>
         </button>
 

@@ -37,7 +37,7 @@
     color: $color-white;
 
     &:hover {
-        background-color: $color-primary;
+        background-color: $color-secondaryDark;
         color: $color-white;
     }
 }
@@ -47,7 +47,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: spacing("third");
+    padding: spacing("quarter");
     padding-left: spacing("single") + spacing("third");
 
     &::after {

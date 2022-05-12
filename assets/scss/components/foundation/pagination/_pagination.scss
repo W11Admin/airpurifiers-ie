@@ -2,7 +2,6 @@
 // PAGINATION (CSS)
 // =============================================================================
 
-
 // Pagination list items
 // -----------------------------------------------------------------------------
 //
@@ -13,16 +12,15 @@
 
 .pagination-list {
     @include clearfix;
-
     font-size: 0; // 1
-    margin-bottom: spacing("single");
+    margin-bottom: spacing("double");
     text-align: center;
 
-    .pagination-item { // 2
+    .pagination-item {
+        // 2
         display: inline-block;
     }
 }
-
 
 // Pagination list items
 // -----------------------------------------------------------------------------
@@ -36,25 +34,50 @@
     line-height: 1;
 
     .pagination-link {
+        align-items: center;
+        background-color: $color-greyLightest;
+        display: flex;
+        height: (spacing("double") - spacing("quarter"));
+        justify-content: center;
         text-decoration: none;
         transition: $pagination-link-transition;
+        width: (spacing("double") - spacing("quarter"));
 
         &:hover {
+            background-color: $color-secondary;
             color: $pagination-link-color-hover;
         }
     }
 
-    &.pagination-item--current { // 1
+    &--current {
+        .pagination-link {
+            background-color: $color-primary;
+
+            &:hover {
+                background-color: $color-primary;
+            }
+        }
+    }
+
+    &.pagination-item--current {
+        // 1
         border-color: $pagination-link-current-borderColor;
         border-radius: $pagination-link-current-borderRadius;
         margin: $pagination-link-current-margin;
     }
 
     &.pagination-item--previous, // 1
-    &.pagination-item--next { // 1
+    &.pagination-item--next {
+        // 1
 
         > a {
             color: $pagination-item-previousNext-color;
+            padding: 0 25px;
+            width: unset;
+
+            .icon > svg {
+                color: $pagination-item-previousNext-color;
+            }
 
             &:hover {
                 color: $pagination-item-previousNext-color-hover;
@@ -80,7 +103,7 @@
     float: left;
 
     .icon {
-        margin-left: -(remCalc(12px));
+        margin-left: -(remCalc(10px));
     }
 }
 
@@ -88,10 +111,9 @@
     float: right;
 
     .icon {
-        margin-right: -(remCalc(12px));
+        margin-right: -(remCalc(10px));
     }
 }
-
 
 // Simple/small pagination (Next/Previous arrows are the only way to navigate)
 // -----------------------------------------------------------------------------

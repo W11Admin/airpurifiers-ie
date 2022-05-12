@@ -254,7 +254,7 @@ export default class Cart extends PageManager {
             cartUpdateQtyTextChange($target, preVal);
         });
 
-        $('.cart-remove', this.$cartContent).on('click', event => {
+        $('.cart-item-remove', this.$cartContent).on('click', event => {
             const itemId = $(event.currentTarget).data('cartItemid');
             const string = $(event.currentTarget).data('confirmDelete');
             showAlertModal(string, {
