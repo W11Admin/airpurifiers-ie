@@ -2,7 +2,6 @@
 // ACCOUNT (CSS)
 // =============================================================================
 
-
 // Account navigation
 // -----------------------------------------------------------------------------
 
@@ -14,7 +13,6 @@
     }
 }
 
-
 // Account headings
 // -----------------------------------------------------------------------------
 
@@ -24,137 +22,40 @@
     padding-bottom: spacing("base");
 }
 
-
 // Account list
 // -----------------------------------------------------------------------------
 
 .account-list {
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    margin-left: 0;
+    margin-bottom: 30px;
+    margin-left: -(spacing("half"));
+    margin-right: -(spacing("half"));
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 40px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 70px;
+    }
 }
 
 .account-listItem {
-    border-bottom: container("border");
-    padding: spacing("single") 0;
-    position: relative;
+    display: inline-block;
+    margin-bottom: spacing("single");
+    padding: 0 spacing("half");
+    vertical-align: top;
+    width: 100%;
 
-    img {
-        width: 100%;
+    @include breakpoint("xsmall") {
+        width: grid-calc(6, $total-columns);
     }
-
-    .account-product-image {
-        @include lazy-loaded-img;
-
-        position: relative;
-    }
-}
-
-.account-listShipping {
-    border-bottom: container("border");
-    font-weight: fontWeight("bold");
-    padding: (spacing("single") + spacing("third")) 0;
-
-    .account-listShipping-title {
-        margin: 0;
-        text-transform: inherit;
-    }
-}
-
-// Account product
-// -----------------------------------------------------------------------------
-
-.account-product {
-    @include media;
-}
-
-.account-product-figure {
-
-    @include lazy-loaded-padding("productthumb_size");
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    margin: 0 spacing("single") + spacing("third") 0 0;
-    position: relative;
-    width: 70px;
-}
-
-.account-product-download {
-    border-radius: 50%;
-    height: remCalc(33px);
-    padding: 0;
-    position: absolute;
-    right: -(spacing("half"));
-    top: -(spacing("half"));
-    width: remCalc(33px);
-    z-index: 1;
-
-    .icon {
-        height: spacing("single");
-        margin-top: spacing("quarter");
-        width: spacing("single");
-    }
-
-    svg {
-        fill: color("whites", "bright");
-    }
-}
-
-.account-product-body {
-    overflow: hidden;
-    padding-bottom: spacing("double") + spacing("third");
-    position: relative;
-
-    @include breakpoint("small") {
-        padding-bottom: 0;
-    }
-
-    .definitionList {
-        font-size: fontSize("smaller");
-        margin-bottom: 0;
-    }
-}
-
-.account-product-title {
-    margin: 0 0 spacing("eighth");
-    text-transform: inherit;
-
-    > a {
-        text-decoration: none;
-    }
-
-    + .definitionList {
-        margin-top: spacing("half");
-    }
-}
-
-.account-product-subtitle {
-    color: color("greys", "light");
-    font-family: fontFamily("sans");
-    font-size: fontSize("smaller");
-    margin: -(spacing("eighth")) 0 spacing("base");
-    text-transform: inherit;
-}
-
-.account-product-price {
-    float: right;
-    font-size: fontSize("smaller");
-}
-
-.account-product-description + .definitionList {
-    margin: -(spacing("base") + spacing("quarter")) 0 spacing("single");
-}
-
-.account-product-refundQty {
-    color: color("greys", "light");
-    margin-bottom: 0;
-}
-
-.account-product-details {
-    @include grid-row($behavior: "nest");
-}
-
-.account-product-detail {
-    @include grid-column(12);
 
     @include breakpoint("small") {
         width: grid-calc(4, $total-columns);
@@ -163,176 +64,51 @@
     @include breakpoint("large") {
         width: grid-calc(3, $total-columns);
     }
-
-    + .account-product-detail {
-        margin-top: spacing("base");
-
-        @include breakpoint("small") {
-            margin-top: 0;
-        }
-    }
-
-    + .account-product-detail--full {
-
-        @include breakpoint("small") {
-            margin-top: spacing("single");
-        }
-    }
 }
 
-.account-product-detail--large {
-
-    @include breakpoint("large") {
-        width: grid-calc(6, $total-columns);
-    }
-}
-
-.account-product-detail--full {
-    width: 100%;
-}
-
-.account-product-detail-heading {
-    color: stencilColor("color-textSecondary");
-    font-family: fontFamily("sans");
-    font-size: fontSize("tiny");
-    margin: 0 0 spacing("quarter");
-}
-
-
-// Vertically aligned product view
+// Account product
 // -----------------------------------------------------------------------------
 
-.account-product--alignMiddle {
-    display: table;
-    width: 100%;
+.account-order {
+    align-items: center;
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
 
-    .account-product-checkItem {
-        display: table-cell;
-        position: relative;
-        vertical-align: middle;
-        width: 2rem;
-
-        @include breakpoint("large") {
-            left: -2.5rem;
-        }
-
-        .form-label {
-            height: spacing("single");
-            margin: 0;
-            padding: 0;
-            width: spacing("single");
-        }
+    @include breakpoint("medium") {
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
     }
 
-    .account-product-figure,
-    .account-product-body {
-        display: table-cell;
-    }
-
-    .account-product-figure {
-        float: none;
-        margin-right: 0;
-
-        @include breakpoint("large") {
-            left: -2rem;
-        }
-    }
-
-    .account-product-body {
-        padding-left: 2rem;
-        vertical-align: middle;
-
-        @include breakpoint("large") {
-            padding-left: 0;
-        }
-    }
-}
-
-
-// Account product totals
-// -----------------------------------------------------------------------------
-
-.account-orderTotal {
-    float: right;
-    font-size: fontSize("smaller");
-    margin-top: -(spacing("single"));
-    width: grid-calc(8, $total-columns);
-}
-
-.account-orderTotal-key,
-.account-orderTotal-value {
-    margin: 0;
-    padding: spacing("single") 0;
-}
-
-.account-orderTotal-key {
-    color: stencilColor("color-textSecondary");
-    float: left;
-    font-weight: fontWeight("normal");
-
-    &:last-of-type {
-        position: relative;
-        top: spacing("fifth");
-    }
-}
-
-.account-orderTotal-value {
-    border-bottom: container("border");
-    text-align: right;
-
-    &:last-child {
-        border-bottom: 0;
-        font-size: fontSize("small");
-    }
-}
-
-
-// Account status
-// -----------------------------------------------------------------------------
-
-.account-orderStatus {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-
-    @include breakpoint("small") {
-        float: right;
-        position: inherit;
-        text-align: right;
-    }
-}
-
-.account-orderStatus-label {
-    background-color: stencilColor("label-backgroundColor");
-    color: stencilColor("label-color");
-    display: inline-block;
-    font-size: fontSize("tiny");
-    line-height: lineHeight("smallest");
-    margin: 0 0 spacing("quarter");
-    padding: spacing("eighth") spacing("third");
-}
-
-.account-orderStatus-action {
-    color: stencilColor("color-textSecondary");
-    display: inline-block;
-    font-size: fontSize("tiny");
-    font-style: italic;
-    letter-spacing: letterSpacing("large");
-    margin-left: spacing("half");
-    text-align: right;
-    text-decoration: underline;
-    vertical-align: top;
-
-    @include breakpoint("small") {
+    span {
         display: block;
-        margin-left: 0;
-    }
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
+        margin-bottom: spacing("third");
+        width: 100%;
+        text-align: left;
     }
 }
 
+.account-orderTitle {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: spacing("half");
+    width: 100%;
+}
+
+.account-orderProducts {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: spacing("single");
+}
+
+.account-orderProduct {
+    font-weight: normal;
+}
 
 // Account pagination & panel
 // -----------------------------------------------------------------------------
@@ -345,7 +121,6 @@
     }
 }
 
-
 // Account inbox
 // -----------------------------------------------------------------------------
 
@@ -354,7 +129,6 @@
         color: color("greys", "light");
     }
 }
-
 
 // Sidebar blocks
 // -----------------------------------------------------------------------------
@@ -384,7 +158,6 @@
     font-weight: fontWeight("normal");
     margin-top: spacing("single");
 }
-
 
 // Product downloads
 // -----------------------------------------------------------------------------

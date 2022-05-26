@@ -1,24 +1,27 @@
+---
+customer:
+    wishlists:
+        limit: 10
+---
+
 {{#partial "page"}}
+    {{#if forms.address.address_id}}
+        <h1 class="page-heading">{{lang 'forms.address.edit.heading'}}</h1>
+    {{else}}
+        <h1 class="page-heading">{{lang 'forms.address.add.heading'}}</h1>
+    {{/if}}
 
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-    {{#if forms.address.address_id}}
-        <h2 class="page-heading">{{lang 'forms.address.edit.heading'}}</h2>
-    {{else}}
-        <h2 class="page-heading">{{lang 'forms.address.add.heading'}}</h2>
-    {{/if}}
-
-    {{> components/account/navigation account_page='addresses'}}
-
-    <div class="account account--fixed">
+    <div class="account">
+        {{> components/account/navigation account_page='addresses'}}
 
         {{#if forms.address.error}}
             {{> components/common/alert/alert-error forms.address.error}}
         {{/if}}
 
         <div class="account-body">
-
-            <form action="{{forms.address.action}}" data-address-form class="form" method="post">
+            <form action="{{forms.address.action}}" data-address-form class="form addressForm" method="post">
                 {{#if forms.address.address_id }}
                     <input type="hidden" name="shipid" value="{{forms.address.address_id}}">
                 {{/if}}
@@ -30,7 +33,7 @@
                     </div>
                 </fieldset>
                 <div class="form-actions">
-                    <input type="submit" class="button button--primary" value="{{lang 'forms.address.submit_value'}}">
+                    <button type="submit" class="button button--primary">{{lang 'forms.address.submit_value'}}</button>
                     <a href="{{urls.account.addresses}}" class="button">{{lang 'common.cancel'}}</a>
                     {{inject 'required' (lang 'common.required')}}
                     {{inject 'state_error' (lang 'errors.state_error')}}

@@ -2,74 +2,240 @@
 // PRODUCT VIEW (CSS)
 // =============================================================================
 
-// Product view sections
-.productView-section {
+// Product view content
+// -----------------------------------------------------------------------------
+
+.productView {
+    @include grid-row($behavior: "nest");
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
-    max-width: 1400px;
-    padding: 0 20px 20px 20px;
+}
+
+.productView-section-title {
+    font-size: 26px;
+    margin-top: 0;
+
+    @include breakpoint("small") {
+        font-size: 30px;
+    }
 
     @include breakpoint("medium") {
-        flex-direction: row;
-        padding: 0 40px 40px 40px;
+        font-size: 36px;
+    }
+}
+
+// Product view images
+// -----------------------------------------------------------------------------
+
+.productView-image {
+    @include grid-column(12, $float: none);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    margin: 40px 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    &:hover {
+        .productView-image-controls button {
+            opacity: 1;
+        }
     }
 
-    &Alt {
-        background-color: $container-fill-base;
+    @include breakpoint("xsmall") {
+        margin: 50px 0;
+    }
+
+    @include breakpoint("small") {
+        @include grid-column(7, $float: none);
+        margin: 60px 0;
+    }
+
+    @include breakpoint("medium") {
+        margin: 80px 0;
+    }
+
+    @include breakpoint("large") {
+        @include grid-column(6, $float: none);
+        margin: 100px 0;
+    }
+}
+
+.MagicZoom {
+    background-color: $color-black;
+    border-radius: $global-radius;
+
+    .mz-figure {
+        background-color: $color-white;
+        opacity: 0.98;
+        overflow: visible;
+
+        img {
+            border-radius: $global-radius;
+        }
+    }
+}
+
+.productView-image-controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    z-index: 1;
+
+    button {
+        align-items: center;
+        background-color: $color-secondary;
+        border-radius: 50%;
+        color: $color-white;
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        padding: 10px;
+        height: 45px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: opacity 750ms ease;
+        width: 45px;
 
-        @include breakpoint("xsmall") {
-            padding: 20px;
+        &#productView-image-previous {
+            left: spacing("single");
         }
 
-        @include breakpoint("medium") {
-            padding: 40px;
+        &#productView-image-next {
+            right: spacing("single");
+        }
+
+        span {
+            font-size: 28px;
+            width: 28px;
         }
     }
+}
 
-    &Title {
-        font-size: 28px;
-        line-height: 1.1;
-        margin-bottom: 25px;
-        width: 100%;
+.productView-thumbnails {
+    align-items: center;
+    bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    left: 50px;
+    @include u-listBullets("none");
+    margin: -8px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.productView-thumbnail {
+    background-color: $color-textBase;
+    border-radius: 50px;
+    cursor: pointer;
+    height: 12px;
+    margin: 8px;
+    transition: all 750ms ease;
+    width: 12px;
+
+    &.mz-thumb-selected {
+        background-color: $color-secondary;
+        width: 30px;
     }
 }
 
 // Product view details
-.productView-details {
-    margin: 30px auto 0 auto;
-    max-width: 550px;
-    padding: 0 10px;
-    text-align: center;
+// -----------------------------------------------------------------------------
 
-    @include breakpoint("medium") {
-        margin: auto 0 auto 40px;
-        max-width: 700px;
-        padding: 0;
-        text-align: left;
+.productView-details {
+    @include grid-column(12, $float: none);
+    margin: auto 0;
+    padding-bottom: 40px;
+
+    @include breakpoint("xsmall") {
+        padding-bottom: 50px;
     }
 
-    @include breakpoint("xlarge") {
-        margin: auto 0 auto 100px;
+    @include breakpoint("small") {
+        @include grid-column(5, $float: none);
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
+    @include breakpoint("medium") {
+        margin-left: auto;
+        max-width: 580px;
+        padding-bottom: 80px;
+        padding-top: 80px;
+    }
+
+    @include breakpoint("large") {
+        @include grid-column(6, $float: none);
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+
+    .breadcrumbs {
+        text-align: left;
+
+        .breadcrumb.is-active {
+            display: none;
+        }
+    }
+
+    .breadcrumb {
+        font-size: 13px;
+
+        @include breakpoint("medium") {
+            font-size: 15px;
+        }
     }
 }
 
-// Product view content
+// Product view description
+// -----------------------------------------------------------------------------
+
 .productView-description {
-    background-color: $body-bg;
-    border-radius: $global-radius;
+    @include grid-column(12, $float: none);
     margin: 0;
-    padding: 20px 25px;
+    margin-bottom: 40px;
     width: 100%;
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+    }
+
+    @include breakpoint("medium") {
+        @include grid-column(8, $float: none);
+        font-size: 15px;
+        margin-bottom: 80px;
+        margin-right: auto;
+        max-width: 62%;
+    }
+
+    @include breakpoint("large") {
+        margin-bottom: 100px;
+    }
 
     h3 {
         font-size: 20px;
-        margin: 30px 0 15px 0;
+        margin: 50px 0 15px 0;
+    }
+
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 
     li {
@@ -79,251 +245,77 @@
     .Sirv {
         height: auto;
     }
+}
 
-    .video-wrapper {
-        border-radius: $global-radius;
-        height: 0;
-        overflow: hidden;
-        padding-bottom: 56.25%;
-        padding-top: 0px;
-        position: relative;
-        width: 100%;
+// Product view sidebar
+// -----------------------------------------------------------------------------
 
-        iframe {
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
-        }
+.productView-sidebar {
+    @include grid-column(12, $float: none);
+
+    @include breakpoint("medium") {
+        @include grid-column(4, $float: none);
     }
+}
+
+.productView-specifications {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    margin-bottom: 40px;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
 
     @include breakpoint("xsmall") {
-        padding: 25px 30px;
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
     }
 
     @include breakpoint("medium") {
-        margin: 0 20px 0 0;
-        max-width: 700px;
-        padding: 30px 35px;
-        width: calc(100% - 400px);
-    }
-}
-
-.delivery-banner {
-    width: 100%;
-
-    img {
-        width: 100%;
+        margin-bottom: 80px;
     }
 
-    &-desktop {
-        display: none;
-
-        @include breakpoint("medium") {
-            display: block;
-        }
-    }
-
-    &-tablet {
-        display: none;
-        margin-bottom: 20px;
-
-        @include breakpoint("xsmall") {
-            display: block;
-        }
-
-        @include breakpoint("medium") {
-            display: none;
-        }
-    }
-
-    &-mobile {
-        display: block;
-        margin-bottom: 10px;
-
-        @include breakpoint("xsmall") {
-            display: none;
-        }
-    }
-}
-
-.guide-banner {
-    margin-top: 10px;
-    width: 100%;
-
-    @include breakpoint("xsmall") {
-        margin-top: 20px;
-    }
-
-    img {
-        width: 100%;
-    }
-
-    &-desktop {
-        display: none;
-
-        @include breakpoint("medium") {
-            display: block;
-        }
-    }
-
-    &-tablet {
-        display: none;
-
-        @include breakpoint("xsmall") {
-            display: block;
-        }
-
-        @include breakpoint("medium") {
-            display: none;
-        }
-    }
-
-    &-mobile {
-        display: block;
-
-        @include breakpoint("xsmall") {
-            display: none;
-        }
-    }
-}
-
-.productView-specification {
-    align-content: flex-start;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    width: 100%;
-
-    &Section {
-        background-color: $body-bg;
-        border-radius: $global-radius;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 10px;
-        padding: 20px 25px 0 25px;
-        width: 100%;
-
-        &.lastSection {
-            padding: 20px 25px 10px 25px;
-        }
-
-        @include breakpoint("xsmall") {
-            margin-top: 20px;
-            padding: 25px 30px 0 30px;
-
-            &.lastSection {
-                padding: 25px 30px 15px 30px;
-            }
-        }
-
-        @include breakpoint("medium") {
-            padding: 30px 35px 0 35px;
-
-            &:first-child {
-                margin-top: 0;
-            }
-
-            &.lastSection {
-                padding: 30px 35px 20px 35px;
-            }
-        }
+    @include breakpoint("large") {
+        margin-bottom: 100px;
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
     }
 
     dl {
+        align-items: center;
         display: flex;
-        margin: 0 20px 30px 0;
+        margin-bottom: spacing("single");
 
-        &.wide {
-            width: 100%;
+        &:last-of-type {
+            margin-bottom: 0;
         }
 
         dt {
             font-weight: 500;
-            margin: 0 5px 0 0;
+            margin: 0;
+            width: 50%;
         }
 
         dd {
             margin: 0;
+            width: 50%;
         }
-    }
-
-    span {
-        display: block;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-
-    @include breakpoint("medium") {
-        max-width: 380px;
     }
 }
 
 // Product view reviews
-.productView-review {
-    max-width: 1140px;
-    padding: 35px 10px 0 10px;
-    width: 100%;
+// -----------------------------------------------------------------------------
 
-    @include breakpoint("xsmall") {
-        padding: 35px 20px 0 20px;
-    }
+.productView-review {
+    @include grid-column(12, $float: none);
 }
 
 // Product view related products
+// -----------------------------------------------------------------------------
+
 .productView-related {
-    margin: auto;
-    max-width: 1400px;
+    @include grid-column(12, $float: none);
+    margin-bottom: 100px;
     width: 100%;
-
-    .productView-sectionTitle {
-        margin-top: 15px;
-        text-align: center;
-
-        @include breakpoint("xsmall") {
-            margin-top: 5px;
-        }
-
-        @include breakpoint("medium") {
-            margin-top: 0;
-        }
-    }
-
-    .productGrid {
-        max-width: 1400px;
-
-        .product {
-            &:nth-last-child(-n + 1) {
-                display: none;
-            }
-
-            @include breakpoint("small") {
-                &:nth-last-child(-n + 2) {
-                    display: none;
-                }
-            }
-
-            @include breakpoint("medium") {
-                width: grid-calc(3, $total-columns);
-
-                &:nth-last-child(-n + 2) {
-                    display: block;
-                }
-
-                &:nth-last-child(-n + 1) {
-                    display: none;
-                }
-            }
-
-            @include breakpoint("xlarge") {
-                width: grid-calc(2, 10);
-
-                &:nth-last-child(-n + 1) {
-                    display: block;
-                }
-            }
-        }
-    }
 }

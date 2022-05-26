@@ -2,7 +2,6 @@
 // FORMS (CSS)
 // =============================================================================
 
-
 // Select boxes
 // -----------------------------------------------------------------------------
 
@@ -18,7 +17,6 @@
     }
 }
 
-
 // Form labels
 // -----------------------------------------------------------------------------
 
@@ -28,7 +26,6 @@
         margin-top: $form-label-small-marginTop;
     }
 }
-
 
 // Form labels (inline small text)
 // -----------------------------------------------------------------------------
@@ -41,5 +38,56 @@
         font-weight: fontWeight("normal");
         margin-left: spacing("quarter");
         text-transform: none;
+    }
+}
+
+// Contact form
+// -----------------------------------------------------------------------------
+
+.contactForm {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    margin-bottom: 40px;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 80px;
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
+    }
+}
+
+// Account registration form
+// -----------------------------------------------------------------------------
+
+.registerForm,
+.forgot-password-form,
+.addressForm,
+.accountForm {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    margin-bottom: 40px;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 80px;
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
     }
 }

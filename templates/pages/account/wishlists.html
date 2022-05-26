@@ -1,11 +1,15 @@
 {{#partial "page"}}
-{{#if settings.show_wishlist}}
-    <div class="account account--fixedLarge">
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-        <h2 class="page-heading">{{lang 'account.wishlists.heading' }}</h2>
+    <h1 class="page-heading">{{lang 'account.wishlists.heading' }}</h1>
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="account">
         {{> components/account/navigation account_page='wishlists'}}
-        {{> components/account/wishlist-list}}
+
+        <section class="account--fixedSmall">
+            <p>You haven't added any products to your wish list yet. Take a look at our collections and we'll keep any products you add here for you.</p>
+            <a class="button button--primary" href="/">Continue Shopping</a>
+        </section>
     </div>
-{{/if}}
 {{/partial}}
 {{> layout/base}}

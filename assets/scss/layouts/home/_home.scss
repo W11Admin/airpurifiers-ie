@@ -6,7 +6,19 @@
 // -----------------------------------------------------------------------------
 
 .home-featuredProducts {
-    margin: 100px 0 120px 0;
+    margin: 50px 0 70px 0;
+
+    @include breakpoint("xsmall") {
+        margin: 60px 0 80px 0;
+    }
+
+    @include breakpoint("small") {
+        margin: 80px 0 100px 0;
+    }
+
+    @include breakpoint("medium") {
+        margin: 100px 0 120px 0;
+    }
 }
 
 // Shop by size section
@@ -31,19 +43,34 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 120px 0 0 0;
+    margin: 60px 0 0 0;
+
+    @include breakpoint("xsmall") {
+        margin: 80px 0 0 0;
+    }
+
+    @include breakpoint("small") {
+        margin: 100px 0 0 0;
+    }
 
     @include breakpoint("medium") {
         flex-direction: row;
+        margin: 120px 0 0 0;
     }
 
     .featuredCategory-image-wrapper {
         margin: 0;
         margin-bottom: spacing("single");
-        margin-right: spacing("double") * 2;
+        max-width: 700px;
         padding: spacing("single");
         position: relative;
-        width: 60%;
+        width: 100%;
+
+        @include breakpoint("medium") {
+            margin-right: spacing("double") * 2;
+            max-width: unset;
+            width: 60%;
+        }
 
         &::after {
             background-color: $color-greyLightest;
@@ -72,10 +99,13 @@
         flex-direction: column;
         justify-content: center;
         margin-bottom: spacing("single");
-        width: 40%;
+        max-width: 700px;
+        width: 100%;
 
         @include breakpoint("medium") {
             margin-bottom: 0;
+            max-width: unset;
+            width: 40%;
         }
 
         p {
@@ -89,7 +119,19 @@
 // -----------------------------------------------------------------------------
 
 .home-featuredBrands {
-    margin: 120px 0;
+    margin: 50px 0 70px 0;
+
+    @include breakpoint("xsmall") {
+        margin: 60px 0 80px 0;
+    }
+
+    @include breakpoint("small") {
+        margin: 80px 0 100px 0;
+    }
+
+    @include breakpoint("medium") {
+        margin: 100px 0 120px 0;
+    }
 }
 
 // Featured product section
@@ -101,12 +143,21 @@
 }
 
 .featuredProduct-image-wrapper {
-    max-height: 650px;
+    height: 450px;
     margin: 0;
     overflow: hidden;
     width: 100%;
 
+    @include breakpoint("small") {
+        height: 550px;
+    }
+
+    @include breakpoint("medium") {
+        height: 650px;
+    }
+
     img {
+        height: 100%;
         object-fit: cover;
         width: 100%;
     }
@@ -167,7 +218,19 @@
 
 .home-featuredPages {
     @include grid-row($behavior: nest);
-    margin: 120px -0.9rem;
+    margin: 60px -0.9rem;
+
+    @include breakpoint("xsmall") {
+        margin: 80px -0.9rem;
+    }
+
+    @include breakpoint("small") {
+        margin: 100px -0.9rem;
+    }
+
+    @include breakpoint("medium") {
+        margin: 120px -0.9rem;
+    }
 }
 
 .featuredPage {
@@ -215,12 +278,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: spacing("double") (spacing("double") + spacing("third"));
+    padding: spacing("single") (spacing("single") + spacing("third"));
+
+    @include breakpoint("xsmall") {
+        padding: spacing("double") (spacing("double") + spacing("third"));
+    }
 
     .featuredPage-title {
-        font-size: 30px;
+        font-size: 24px;
         line-height: 1.1;
         margin: 0;
+
+        @include breakpoint("xsmall") {
+            font-size: 30px;
+        }
     }
 
     p {

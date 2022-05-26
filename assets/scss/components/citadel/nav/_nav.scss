@@ -72,7 +72,6 @@
     background: $navList-action-close-background;
     border-radius: $navList-action-close-borderRadius;
     display: inline-block;
-    float: right;
     line-height: 0;
     opacity: 0;
     padding: $navList-action-close-padding;
@@ -94,47 +93,57 @@
 // -----------------------------------------------------------------------------
 
 .navBar--sub {
-    margin-bottom: spacing("single") * 3;
     text-align: center;
 
     .navBar-section {
+        align-items: center;
+        background-color: $color-greyLightest;
+        border-radius: 50px;
+        display: flex;
         float: none;
+        justify-content: space-between;
+        margin-bottom: spacing("single");
+        overflow: hidden;
+
+        &::before,
+        &::after {
+            display: none;
+        }
     }
 
     .navBar-item {
+        border-right: 1px solid $color-greyLightest;
         float: none;
-        margin: 0 spacing("half");
+        transition: background 750ms ease;
+        width: 100%;
 
-        @include breakpoint("medium") {
-            display: inline-block;
+        &:hover,
+        &.is-active {
+            @include breakpoint("medium") {
+                background-color: $color-primary;
+                color: $color-white;
+
+                .navBar-action {
+                    color: stencilColor("color-white");
+                }
+            }
         }
 
         &.is-active {
             @include breakpoint("medium") {
-                border-bottom: 1px solid stencilColor("color-textBase");
-            }
-
-            > .navBar-action {
-                color: color("greys", "dark");
-            }
-        }
-
-        &.navBar-item--separate {
-            @include breakpoint("medium") {
-                border-left: 1px solid stencilColor("color-textSecondary");
-                margin: 0;
-                padding-left: spacing("half");
+                pointer-events: none;
             }
         }
     }
 
     .navBar-action {
-        color: stencilColor("color-textSecondary");
-        font-size: fontSize("base");
-        padding: 0;
+        color: stencilColor("color-textBase");
+        font-size: 14px;
+        font-weight: 500;
+        padding: spacing("half") 0;
 
         &:hover {
-            color: stencilColor("color-textSecondary--hover");
+            color: stencilColor("color-primary");
         }
     }
 }

@@ -1,6 +1,6 @@
 {{#each categories}}
     {{#if children}}
-        <li class="navPage-subMenu-item">
+        <li class="navPage-subMenu-item has-subMenu">
             <div class="navPage-subMenu-action navPages-action has-subMenu" aria-label="{{name}}">
                 {{name}}
             </div>
@@ -17,34 +17,34 @@
     {{/if}}
 {{/each}}
 
-<li class="navPage-subMenu-item">
+<li class="navPage-subMenu-item has-subMenu">
     <div class="navPage-subMenu-action navPages-action has-subMenu" aria-label="Shop By Size">
         Shop By Size
     </div>
     <ul class="navPage-childList">
         <li class="navPage-childList-item">
-            <a class="navPage-childList-action navPages-action" href="/" aria-label="Small Rooms">
+            <a class="navPage-childList-action navPages-action" href="/air-treatment/air-purifiers/?_bc_fsnf=1&Room+Size=0+-+20+m%C2%B2" aria-label="Small Rooms">
                 Small Rooms
             </a>
         </li>
         <li class="navPage-childList-item">
-            <a class="navPage-childList-action navPages-action" href="/" aria-label="Medium Rooms">
+            <a class="navPage-childList-action navPages-action" href="/air-treatment/air-purifiers/?_bc_fsnf=1&Room+Size=20+-+40+m%C2%B2" aria-label="Medium Rooms">
                 Medium Rooms
             </a>
         </li>
         <li class="navPage-childList-item">
-            <a class="navPage-childList-action navPages-action" href="/" aria-label="Large Rooms">
+            <a class="navPage-childList-action navPages-action" href="/air-treatment/air-purifiers/?_bc_fsnf=1&Room+Size=40+-+60+m%C2%B2" aria-label="Large Rooms">
                 Large Rooms
             </a>
         </li>
         <li class="navPage-childList-item">
-            <a class="navPage-childList-action navPages-action" href="/" aria-label="X-Large Rooms">
+            <a class="navPage-childList-action navPages-action" href="/air-treatment/air-purifiers/?_bc_fsnf=1&Room+Size=60+-+80+m%C2%B2" aria-label="X-Large Rooms">
                 X-Large Rooms
             </a>
         </li>
         <li class="navPage-childList-item">
-            <a class="navPage-childList-action navPages-action" href="/" aria-label="Commercial Spaces">
-                Commercial Spaces
+            <a class="navPage-childList-action navPages-action" href="/air-treatment/air-purifiers/?_bc_fsnf=1&Room+Size=80+-+120+m%C2%B2" aria-label="Commercial Spaces">
+                Commercial
             </a>
         </li>
     </ul>
@@ -53,18 +53,9 @@
 {{#each categories}}
     {{#unless children}}
         <li class="navPage-subMenu-item">
-            <div class="navPage-subMenu-action navPages-action has-subMenu" aria-label="{{name}}">
+            <div class="navPage-subMenu-action navPages-action" aria-label="{{name}}">
                 {{name}}
             </div>
-            <ul class="navPage-childList" id="navPages-{{id}}">
-                {{#each children}}
-                    <li class="navPage-childList-item">
-                        <a class="navPage-childList-action navPages-action" href="{{url}}" aria-label="{{name}}">
-                            {{name}}
-                        </a>
-                    </li>
-                {{/each}}
-            </ul>
         </li>
     {{/unless}}
 {{/each}}

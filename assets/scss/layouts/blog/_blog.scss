@@ -7,92 +7,138 @@
 // -----------------------------------------------------------------------------
 
 .blog {
-    margin-bottom: spacing("single");
+    @include grid-column(12);
+    overflow: hidden;
+
+    &:hover {
+        .blog-post-figure img {
+            transform: translate3d(0, 0, 0) scale(1.08);
+        }
+    }
+
+    &:first-child {
+        margin-bottom: spacing("single");
+    }
 
     @include breakpoint("medium") {
-        margin: auto;
-        width: 100%;
-    }
+        width: grid-calc(6, $total-columns);
 
-    + .blog {
-        border-top: container("border");
-        margin-top: spacing("double");
-        padding-top: spacing("double");
-    }
-
-    .tags {
-        margin-top: spacing("double");
-        text-align: center;
-    }
-
-    .socialLinks {
-        text-align: center;
-    }
-
-    .addthis_toolbox {
-        margin-top: spacing("double");
-    }
-}
-
-.blog-title {
-    font-size: fontSize("large");
-    margin: 0 spacing("single") spacing("quarter");
-
-    a {
-        text-decoration: none;
-    }
-}
-
-.blog-date,
-.blog-author {
-    color: stencilColor("color-textSecondary");
-    text-align: center;
-}
-
-.blog-author {
-    margin-bottom: spacing("single") + spacing("base");
-}
-
-.blog-post {
-    font-size: fontSize("smaller");
-    text-align: left;
-}
-
-.blog-thumbnail {
-    margin: 0 auto (spacing("base") * 2);
-    max-width: get_width(stencilString("blog_size"));
-    position: relative;
-
-    img {
-        width: 100%;
+        &:first-child {
+            margin-bottom: 0;
+        }
     }
 }
 
 .blog-post-figure {
-    display: block;
-    margin: auto;
-    text-align: center;
+    border-radius: $global-radius $global-radius 0 0;
+    margin: 0;
+    max-height: 280px;
+    overflow: hidden;
+    width: 100%;
 
-    @include breakpoint("medium") {
-        width: grid-calc(8, $total-columns);
+    img {
+        object-fit: cover;
+        transform: translate3d(0, 0, 0) scale(1);
+        transition: transform 750ms ease;
+        width: 100%;
     }
 }
 
 .blog-post-body {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
+    align-items: flex-start;
+    background-color: $color-greyLightest;
+    border-radius: 0 0 $global-radius $global-radius;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: spacing("single") (spacing("single") + spacing("third"));
+
+    @include breakpoint("xsmall") {
+        padding: spacing("double") (spacing("double") + spacing("third"));
+    }
+
+    .blog-post-title {
+        font-size: 24px;
+        line-height: 1.1;
+        margin: 0;
+
+        @include breakpoint("xsmall") {
+            font-size: 30px;
+        }
+    }
+
+    .blog-post-date {
+        display: block;
+        margin-top: spacing("half");
+    }
+
+    p {
+        margin: spacing("single") 0 (spacing("single") + spacing("half")) 0;
+    }
+}
+
+.blog-post {
+    margin-bottom: spacing("double");
 
     @include breakpoint("small") {
-        width: grid-calc(10, $total-columns);
+        font-size: 15px;
     }
 
-    @include breakpoint("medium") {
-        width: grid-calc(8, $total-columns);
+    h2, h3 {
+        margin-bottom: spacing("single");
+        margin-top: spacing("double");
     }
 
-    @include breakpoint("large") {
-        width: grid-calc(6, $total-columns);
+    h2 {
+        font-size: 30px;
+        line-height: 1.2;
+
+        @include breakpoint("xsmall") {
+            font-size: 32px;
+        }
+
+        @include breakpoint("small") {
+            font-size: 34px;
+        }
+
+        @include breakpoint("small") {
+            font-size: 36px;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+        line-height: 1.3;
+        
+        @include breakpoint("xsmall") {
+            font-size: 26px;
+        }
+
+        @include breakpoint("small") {
+            font-size: 28px;
+        }
+    }
+
+    h4 {
+        font-size: 18px;
+        margin-bottom: spacing("half");
+        margin-top: spacing("single");
+        line-height: 1.3;
+        
+        @include breakpoint("xsmall") {
+            font-size: 20px;
+        }
+
+        @include breakpoint("small") {
+            font-size: 22px;
+        }
+    }
+
+    p {
+        margin-bottom: spacing("single");
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }

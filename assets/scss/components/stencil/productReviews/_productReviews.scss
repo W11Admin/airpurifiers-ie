@@ -2,7 +2,6 @@
 // PRODUCT REVIEWS (CSS)
 // =============================================================================
 
-
 // Review list
 //
 // 1. Kill extra display inline-block spacing
@@ -11,31 +10,53 @@
 .productReviews-list {
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
     font-size: 0; // 1
+    justify-content: center;
+    margin-bottom: spacing("single");
 }
-
 
 // Review item
 // -----------------------------------------------------------------------------
 
 .productReview {
     @include grid-column(12);
-    display: inline-block;
     float: none;
     font-size: fontSize("base");
+    margin-bottom: spacing("single");
     vertical-align: top;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 
     @include breakpoint("medium") {
         width: grid-calc(6, $total-columns);
     }
 
     @include breakpoint("large") {
+        margin-bottom: 0;
         width: grid-calc(4, $total-columns);
+    }
+
+    article {
+        background-color: $color-greyLightest;
+        border-radius: $global-radius;
+        padding: (spacing("single") - spacing("sixth")) spacing("single");
+
+        @include breakpoint("medium") {
+            padding: (spacing("single") + spacing("third"))
+                (spacing("single") + spacing("half"));
+        }
     }
 }
 
 .productReview-title {
-    margin: 0;
+    display: block;
+    font-size: 15px;
+    margin-bottom: spacing("half");
     text-transform: none;
 }
 
@@ -46,7 +67,7 @@
 
 .productReview-rating {
     display: inline-block;
-    margin-bottom: spacing("quarter");
+    margin-bottom: spacing("half");
 }
 
 .productReview-ratingNumber {

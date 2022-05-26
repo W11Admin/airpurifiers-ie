@@ -2,7 +2,6 @@
 // FOOTER (CSS)
 // =============================================================================
 
-
 // Layout and columns
 // -----------------------------------------------------------------------------
 //
@@ -15,8 +14,8 @@
 
 .footer {
     background-color: $footer-background;
-    border-top: container("border");
-    padding: spacing("double") 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: spacing("double");
     position: relative;
     transform: translateZ(0); // 3
 }
@@ -31,12 +30,22 @@
 }
 
 .footer-info {
-    @include grid-row($behavior: nest);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     font-size: 0; // 1
+
+    @include breakpoint("small") {
+        flex-direction: row;
+    }
+
+    @include breakpoint("medium") {
+        justify-content: flex-start;
+    }
 }
 
 .footer-info-col {
-    @include grid-column(12);
     color: stencilColor("color-textSecondary");
     display: inline-block;
     float: none;
@@ -45,15 +54,14 @@
     overflow-wrap: break-word;
     text-align: center;
     vertical-align: top;
-    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
-    -ms-word-break: break-all;
+
     @include breakpoint("small") {
         text-align: left;
-        width: width("6/12");
+        padding-right: (spacing("double") * 2.5);
     }
 
     @include breakpoint("medium") {
-        width: width("4/12");
+        margin-right: auto;
     }
 
     > :first-child {
@@ -66,8 +74,15 @@
 }
 
 .footer-info-col--small {
+    &:last-child {
+        @include breakpoint("medium") {
+            margin-right: 0;
+        }
+    }
+
     @include breakpoint("medium") {
-        width: width("2/12");
+        margin-right: (spacing("double") * 2.5);
+        padding: 0;
     }
 }
 
@@ -96,13 +111,29 @@
     }
 }
 
-
 // Content
 // -----------------------------------------------------------------------------
 
+.footer-logo {
+    display: block;
+    margin-bottom: spacing("single");
+}
+
+.footer-number {
+    color: stencilColor("color-primary");
+    display: block;
+    font-weight: 500;
+    margin-bottom: spacing("quarter");
+}
+
+.footer-address {
+    color: stencilColor("color-textBase");
+    font-style: normal;
+}
+
 .footer-info-heading {
     color: $footer-heading-fontColor;
-    font-size: fontSize("base");
+    font-size: 15px;
     text-transform: inherit;
 }
 
@@ -111,42 +142,20 @@
     margin-left: 0;
 
     a {
-        color: stencilColor("color-textSecondary");
+        color: stencilColor("color-textBase");
         text-decoration: none;
 
         &:hover {
-            color: stencilColor("color-textSecondary--hover");
+            color: stencilColor("color-primary");
         }
     }
 }
 
 .footer-copyright {
+    background-color: $color-textBase;
+    color: $color-greyLight;
+    padding: spacing("third");
     text-align: center;
-
-    @include breakpoint("small") {
-        text-align: left;
-    }
-
-    > .powered-by {
-        color: stencilColor("color-textSecondary");
-        font-size: fontSize("tiny");
-        margin: 0;
-    }
-
-    > .paypal-credit {
-        color: stencilColor("color-textSecondary");
-        font-size: fontSize("tiny");
-        margin: 1em 0 2em;
-    }
-
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
-
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-    }
 }
 
 .footer-payment-icons {

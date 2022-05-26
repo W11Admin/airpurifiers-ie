@@ -102,12 +102,8 @@
 
 .form-actions {
     @include grid-row();
-    display: block;
+    display: flex;
     text-align: center;
-
-    @include breakpoint("small") {
-        margin-top: spacing("single");
-    }
 
     .button,
     input,
@@ -355,6 +351,11 @@
     height: $input-small-height;
     line-height: 1rem;
     padding: $input-small-padding;
+}
+
+textarea.form-input {
+    border-radius: $global-radius;
+    min-height: 150px;
 }
 
 

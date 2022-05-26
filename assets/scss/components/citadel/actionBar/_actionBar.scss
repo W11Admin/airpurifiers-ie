@@ -3,13 +3,13 @@
 // =============================================================================
 
 .actionBar {
-    background-color: $color-greyLightest;
     display: flex;
     justify-content: center;
     margin: 0 0 spacing("single") 0;
     width: 100%;
 
     @include breakpoint("medium") {
+        background-color: $color-greyLightest;
         border-radius: $global-radius;
         padding: (spacing("single") - spacing("third")) spacing("single");
         padding-bottom: spacing("single");
@@ -22,15 +22,6 @@
 
     &-section {
         float: none;
-        width: calc(50% - 5px);
-
-        @include breakpoint("xsmall") {
-            width: calc(50% - 10px);
-        }
-
-        @include breakpoint("small") {
-            width: 250px;
-        }
 
         @include breakpoint("medium") {
             width: 100%;
@@ -43,24 +34,28 @@
 
         .form-label {
             color: $color-textBase;
+            display: none;
             font-size: 20px;
             font-weight: 600;
             margin: 0;
 
             @include breakpoint("medium") {
+                display: block;
                 margin: 0 0 spacing("half") 0;
             }
         }
 
         .form-input,
         .form-select {
-            background-color: $color-white;
+            background-color: $color-greyLightest;
             background-position: right 14px top 15px;
             background-size: 18px;
+            border: 0;
             padding: 15px 40px 16px 20px;
             width: 100%;
 
             @include breakpoint("medium") {
+                background-color: $color-white;
                 background-position: right 16px top 13px;
                 border: 1px solid $color-greyLighter;
                 padding: 14px 40px 14px 20px;
@@ -70,14 +65,16 @@
     }
 
     .button {
-        margin-right: 10px;
-        width: calc(50% - 5px);
+        margin-right: spacing("half");
+        padding-right: spacing("single") + spacing("third");
 
         &::after {
             background-color: $color-black;
+            border-radius: 0;
             content: "";
             height: 100%;
             left: 0;
+            margin: 0;
             opacity: 0;
             position: fixed;
             top: 0;
@@ -85,7 +82,7 @@
             -webkit-transition: all 500ms ease;
             visibility: hidden;
             width: 100%;
-            z-index: zIndex("higher");
+            z-index: zIndex("highest");
         }
 
         &.is-open {
@@ -93,15 +90,6 @@
                 opacity: 0.7;
                 visibility: visible;
             }
-        }
-
-        @include breakpoint("xsmall") {
-            margin-right: 20px;
-            width: calc(50% - 10px);
-        }
-
-        @include breakpoint("small") {
-            width: auto;
         }
     }
 

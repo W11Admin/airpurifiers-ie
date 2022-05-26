@@ -10,11 +10,12 @@ cart: true
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
     <main class="page">
-        <div class="page-content" data-cart>
-            <div data-cart-status>
-                {{> components/cart/status-messages}}
-            </div>
-            {{#if cart.items.length}}
+        {{#if cart.items.length}}
+            <div class="page-content" data-cart>
+                <div data-cart-status>
+                    {{> components/cart/status-messages}}
+                </div>
+
                 <div class="cart-content">
                     <div class="loadingOverlay"></div>
                     <div class="cart-items" data-cart-content>
@@ -38,16 +39,15 @@ cart: true
                         </div>
                     </div>
                 </div>
-            {{else}}
-                <div class="emptyMessage">
-                    <h3>No Items Added</h3>
-                    <p>Your shopping cart is currently empty. Add available items from any of our collections to view
-                        your cart and
-                        proceed to the checkout.</p>
-                    <a class="button button--primary" href="/">Continue Shopping</a>
-                </div>
-            {{/if}}
-        </div>
+            </div>
+        {{else}}
+            <div class="page-content page-content--textCenter">
+                <p>Your shopping cart is currently empty. Add available items from any of our collections to view
+                    your cart and
+                    proceed to the checkout.</p>
+                <a class="button button--primary" href="/">Continue Shopping</a>
+            </div>
+        {{/if}}
     </main>
 {{/partial}}
 {{> layout/base}}

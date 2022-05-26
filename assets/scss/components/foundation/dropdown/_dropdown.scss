@@ -52,7 +52,14 @@
 }
 
 .form-wishlist {
+    margin-bottom: 0;
+    margin-top: spacing("single");
     position: relative;
+
+    .button {
+        margin-bottom: 0;
+        width: auto;
+    }
 }
 
 .dropdown-menu-button {

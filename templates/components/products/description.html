@@ -1,13 +1,6 @@
 {{#if product.description}}
-    <p class="productView-title">{{lang 'products.description'}}</p>
-    <div class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+    <section class="productView-description" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+        <h2 class="productView-section-title">Product description</h2>
         {{{product.description}}}
-    </div>
-{{/if}}
-
-{{#if product.warranty}}
-    <p class="productView-title">{{lang 'products.warranty'}}</p>
-    <div class="productView-description">
-        {{{product.warranty}}}
-    </div>
+    </section>
 {{/if}}

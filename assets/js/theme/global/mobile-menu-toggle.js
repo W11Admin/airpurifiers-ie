@@ -35,11 +35,14 @@ export class MobileMenuToggle {
         this.$header = $(headerSelector);
         this.$scrollView = $(scrollViewSelector, this.$menu);
         this.$subMenus = this.$navList.find('.navPages-action');
+        this.$subReturn = this.$navList.find('.navPage-subMenu-close');
+        this.$close = $('#navPages-close');
         this.$toggle = $toggle;
         this.mediumMediaQueryList = mediaQueryListFactory('medium');
 
         // Auto-bind
         this.onToggleClick = this.onToggleClick.bind(this);
+        this.onCloseClick = this.onCloseClick.bind(this);
         this.onCartPreviewOpen = this.onCartPreviewOpen.bind(this);
         this.onMediumMediaQueryMatch = this.onMediumMediaQueryMatch.bind(this);
         this.onSubMenuClick = this.onSubMenuClick.bind(this);
@@ -60,8 +63,10 @@ export class MobileMenuToggle {
 
     bindEvents() {
         this.$toggle.on('click', this.onToggleClick);
+        this.$close.on('click', this.onCloseClick);
         this.$header.on(CartPreviewEvents.open, this.onCartPreviewOpen);
         this.$subMenus.on('click', this.onSubMenuClick);
+        this.$subReturn.on('click', this.onReturnClick);
 
         if (this.mediumMediaQueryList && this.mediumMediaQueryList.addListener) {
             this.mediumMediaQueryList.addListener(this.onMediumMediaQueryMatch);
@@ -94,7 +99,6 @@ export class MobileMenuToggle {
 
         this.$menu.addClass('is-open');
 
-        this.$header.addClass('is-open');
         this.$scrollView.scrollTop(0);
 
         this.resetSubMenus();
@@ -109,8 +113,6 @@ export class MobileMenuToggle {
 
         this.$menu.removeClass('is-open');
 
-        this.$header.removeClass('is-open');
-
         this.resetSubMenus();
     }
 
@@ -119,6 +121,12 @@ export class MobileMenuToggle {
         event.preventDefault();
 
         this.toggle();
+    }
+
+    onCloseClick(event) {
+        event.preventDefault();
+
+        this.hide();
     }
 
     onCartPreviewOpen() {
@@ -137,27 +145,31 @@ export class MobileMenuToggle {
 
     onSubMenuClick(event) {
         const $closestAction = $(event.target).closest('.navPages-action');
-        const $parentSiblings = $closestAction.parent().siblings();
-        const $parentAction = $closestAction.closest('.navPage-subMenu-horizontal').siblings('.navPages-action');
 
-        if (this.$subMenus.hasClass('is-open')) {
-            this.$navList.addClass('subMenu-is-open');
+        if ($closestAction.hasClass('is-open')) {
+            $closestAction.removeClass('is-open');
+            $closestAction.next().removeClass('is-open');
+            $closestAction.next().next().removeClass('is-open');
         } else {
-            this.$navList.removeClass('subMenu-is-open');
+            $closestAction.addClass('is-open');
+            $closestAction.next().addClass('is-open');
+            $closestAction.next().next().addClass('is-open');
         }
+    }
 
-        if ($(event.target).hasClass('is-open')) {
-            $parentSiblings.addClass('is-hidden');
-            $parentAction.addClass('is-hidden');
-        } else {
-            $parentSiblings.removeClass('is-hidden');
-            $parentAction.removeClass('is-hidden');
-        }
+    onReturnClick(event) {
+        const $closestReturn = $(event.target).closest('.navPage-subMenu-close');
+
+        $closestReturn.removeClass('is-open');
+        $closestReturn.prev().removeClass('is-open');
+        $closestReturn.prev().prev().removeClass('is-open');
     }
 
     resetSubMenus() {
         this.$navList.find('.is-hidden').removeClass('is-hidden');
-        this.$navList.removeClass('subMenu-is-open');
+        this.$navList.removeClass('is-open');
+        this.$subReturn.removeClass('is-open');
+        this.$header.removeClass('is-open');
     }
 }
 

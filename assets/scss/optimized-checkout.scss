@@ -15,25 +15,25 @@
 // Background, Logo Position
 // -----------------------------------------------------------------------------
 
-*:focus {
-    outline-color: stencilColor("optimizedCheckout-colorFocus");
-}
-
 .optimizedCheckout-header {
     background-color: stencilColor("optimizedCheckout-header-backgroundColor");
-    /* stylelint-disable function-url-quotes*/
+    // scss-lint:disable StringQuotes
     background-image: url(stencilImage('optimizedCheckout-backgroundImage', 'optimizedCheckout-backgroundImage-size'));
-    /* stylelint-enable */
+    // scss-lint:enable StringQuotes
     background-size: cover;
     border-color: stencilColor("optimizedCheckout-header-borderColor");
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: stencilColor("optimizedCheckout-header-textColor");
+    min-height: auto;
+    text-align: center;
 
-    //
-    // TODO:
-    // Configure media query to be 'desktop' breakpoint size
-    // -----------------------------------------------------------------------------
-    @media (min-width: 801px) {
-        text-align: stencilString("optimizedCheckout-logo-position");
+    .checkoutHeader-content {
+        padding: 20px 30px;
+    }
+
+    img {
+        display: block;
+        margin: auto;
     }
 }
 
@@ -53,7 +53,45 @@
 .optimizedCheckout-headingSecondary {
     color: stencilColor("optimizedCheckout-headingSecondary-color");
     font-family: stencilFontFamily("optimizedCheckout-headingSecondary-font"), Arial, Helvetica, sans-serif;
+    font-size: 18px;
     font-weight: stencilFontWeight("optimizedCheckout-headingSecondary-font");
+}
+
+#checkout-shipping-options .form-body::before {
+    color: red;
+    content: 'Orders placed after 14:00 will be dispatched on the following working day (Monday to Friday excluding Bank Holidays)';
+    display: block;
+    margin: 5px 0 20px 0;
+}
+
+.stepHeader {
+    align-items: center;
+}
+
+.stepHeader-body.optimizedCheckout-contentPrimary {
+    display: none;
+}
+
+.stepHeader-actions {
+    margin: auto 0 auto auto;
+
+    .optimizedCheckout-buttonSecondary {
+        background-color: transparent;
+        border: none;
+        color: stencilColor("optimizedCheckout-link-color");
+        letter-spacing: 0;
+        padding: 0;
+
+        &:hover, &:focus {
+            background-color: transparent;
+            border: none;
+            color: stencilColor("optimizedCheckout-link-hoverColor");
+        }
+
+        &::after {
+            display: none;
+        }
+    }
 }
 
 //
@@ -69,6 +107,14 @@ body {
     background-color: stencilColor("optimizedCheckout-body-backgroundColor");
     border-color: stencilColor("optimizedCheckout-step-borderColor");
     color: stencilColor("optimizedCheckout-contentPrimary-color");
+}
+
+.orderConfirmation-section {
+    border-bottom: none;
+}
+
+.guest-signup {
+    display: none;
 }
 
 //
@@ -99,9 +145,15 @@ body {
 .optimizedCheckout-buttonPrimary {
     background-color: stencilColor("optimizedCheckout-buttonPrimary-backgroundColor");
     border-color: stencilColor("optimizedCheckout-buttonPrimary-borderColor");
+    border-radius: 50px;
     color: stencilColor("optimizedCheckout-buttonPrimary-color");
     font-family: stencilFontFamily("optimizedCheckout-buttonPrimary-font"), Arial, Helvetica, sans-serif;
+    font-size: 15px;
     font-weight: stencilFontWeight("optimizedCheckout-buttonPrimary-font");
+    line-height: 1;
+    text-transform: none;
+    transition: all 750ms ease;
+    width: auto;
 
     &:focus,
     &:hover {
@@ -112,7 +164,6 @@ body {
 
     &:focus {
         border-color: stencilColor("optimizedCheckout-colorFocus");
-        box-shadow: 0 0 3px stencilColor("optimizedCheckout-colorFocus");
     }
 
     &:active {
@@ -142,9 +193,14 @@ body {
 .optimizedCheckout-buttonSecondary {
     background-color: stencilColor("optimizedCheckout-buttonSecondary-backgroundColor");
     border-color: stencilColor("optimizedCheckout-buttonSecondary-borderColor");
+    border-radius: 50px;
     color: stencilColor("optimizedCheckout-buttonSecondary-color");
     font-family: stencilFontFamily("optimizedCheckout-buttonSecondary-font"), Arial, Helvetica, sans-serif;
+    font-size: 15px;
     font-weight: stencilFontWeight("optimizedCheckout-buttonSecondary-font");
+    line-height: 1;
+    text-transform: none;
+    transition: all 750ms ease;
 
     &:focus,
     &:hover {
@@ -192,6 +248,33 @@ a {
     }
 }
 
+.button--primary,
+.button--secondary,
+.button--tertiary,
+.button--action {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0.42857rem;
+    padding-left: 2.37143rem;
+
+    &::after {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50%;
+        color: #333333;
+        content: "\e5c8";
+        display: flex;
+        font-family: "Material Icons";
+        font-size: 20px;
+        font-weight: 600;
+        height: 2.37143rem;
+        justify-content: center;
+        margin-left: 1.8rem;
+        width: 2.37143rem;
+    }
+}
+
 //
 // Order Summary (Mobile Drawer & Modal)
 // Background Color
@@ -200,7 +283,36 @@ a {
 .optimizedCheckout-orderSummary {
     background-color: stencilColor("optimizedCheckout-orderSummary-backgroundColor");
     border-color: stencilColor("optimizedCheckout-orderSummary-borderColor");
-    box-shadow: 0 4px 8px transparentize(stencilColor("optimizedCheckout-orderSummary-borderColor"), 0.5);
+    border-radius: 20px;
+    box-shadow: none;
+
+    .optimizedCheckout-contentSecondary {
+        display: none;
+    }
+
+    .redeemable-label {
+        color: #fff;
+        position: relative;
+
+        &::after {
+            color: stencilColor("optimizedCheckout-colorFocus");
+            content: 'Gift Certificate';
+            font-size: 13px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+    }
+
+    .form-prefixPostfix {
+        input {
+            border-radius: 50px 0 0 50px;
+        }
+
+        button {
+            border-radius: 0 50px 50px 0;
+        }
+    }
 }
 
 .optimizedCheckout-orderSummary-cartSection {
@@ -229,6 +341,16 @@ a {
     }
 }
 
+.customerEmail-body {
+    width: 100%;
+}
+
+.customerEmail-action {
+    margin: 20px 0 0 0;
+    padding: 0;
+    width: auto;
+}
+
 //
 // Form Labels
 // Text Color
@@ -237,6 +359,34 @@ a {
 
 .optimizedCheckout-form-label {
     color: stencilColor("optimizedCheckout-form-textColor");
+    font-size: 11px;
+    font-weight: 400;
+
+    small {
+        display: none;
+    }
+}
+
+.form-fieldset {
+    margin-bottom: 30px;
+
+    .shippingOptions-panel {
+        border: none;
+        min-height: auto;
+        padding: 0;
+        text-align: left;
+    }
+}
+
+#checkoutShippingAddress {
+    .form-fieldset {
+        margin: 0;
+    }
+}
+
+.form-checkbox + .optimizedCheckout-form-label {
+    letter-spacing: 0;
+    text-transform: none;
 }
 
 .form-field--error {
@@ -245,6 +395,32 @@ a {
         color: stencilColor("optimizedCheckout-formField-errorColor");
     }
 }
+
+.form-field-password {
+    margin-bottom: 10px
+}
+
+.form-actions {
+    margin: 20px 0;
+
+    .button + .button {
+        margin-left: 20px;
+    }
+}
+
+.form-prefixPostfix .button {
+    height: 46px;
+    margin: 0;
+}
+
+.checkout-address .dynamic-form-field {
+    margin-bottom: 20px
+}
+
+.dropdown-toggle--select {
+    margin-bottom: 20px;
+}
+
 //
 // Form Input
 // Background, Border, Shadow and Text Color
@@ -255,12 +431,13 @@ $optimizedCheckout-input-boxShadow: inset 0 1px 1px stencilColor("optimizedCheck
 $optimizedCheckout-input--focus-boxShadow: 0 0 3px transparentize(stencilColor("optimizedCheckout-colorFocus"), 0.4);
 $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("optimizedCheckout-formField-errorColor"), 0.4);
 
-.optimizedCheckout-form-input,
-.optimizedCheckout-form-select {
+.optimizedCheckout-form-input {
     background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
     border-color: stencilColor("optimizedCheckout-formField-borderColor");
+    border-radius: 50px;
     box-shadow: $optimizedCheckout-input-boxShadow;
     color: stencilColor("optimizedCheckout-formField-textColor");
+    padding: 14px 20px;
 
     &::placeholder {
         color: stencilColor("optimizedCheckout-formField-placeholderColor");
@@ -269,7 +446,26 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
     .form-field--error & {
         background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
         border-color: stencilColor("optimizedCheckout-formField-errorColor");
-        box-shadow: $optimizedCheckout-input--error-boxShadow, $optimizedCheckout-input-boxShadow;
+        box-shadow: none;
+    }
+}
+
+.optimizedCheckout-form-select {
+    background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
+    border-color: stencilColor("optimizedCheckout-formField-borderColor");
+    border-radius: 50px;
+    box-shadow: $optimizedCheckout-input-boxShadow;
+    color: stencilColor("optimizedCheckout-formField-textColor");
+    padding: 14px 40px 14px 20px;
+
+    &::placeholder {
+        color: stencilColor("optimizedCheckout-formField-placeholderColor");
+    }
+
+    .form-field--error & {
+        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
+        border-color: stencilColor("optimizedCheckout-formField-errorColor");
+        box-shadow: none;
     }
 }
 
@@ -278,7 +474,7 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
 .optimizedCheckout-form-select:hover {
     background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
     border-color: stencilColor("optimizedCheckout-colorFocus");
-    box-shadow: $optimizedCheckout-input--focus-boxShadow, $optimizedCheckout-input-boxShadow;
+    box-shadow: none;
 }
 
 .optimizedCheckout-form-label::before {
@@ -292,8 +488,8 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
 
     .optimizedCheckout-form-radio:checked + &,
     .optimizedCheckout-form-checkbox:checked + & {
-        background-color: stencilColor("optimizedCheckout-formField-inputControlColor");
-        border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
+        background-color: stencilColor("optimizedCheckout-formField-inputControlColorSelected");
+        border-color: stencilColor("optimizedCheckout-formField-inputControlColorSelected");
         box-shadow: none;
     }
 
@@ -333,39 +529,118 @@ $optimizedCheckout-input--error-boxShadow: 0 0 3px transparentize(stencilColor("
 // -----------------------------------------------------------------------------
 
 .optimizedCheckout-form-checklist {
-    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColor");
-    border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
+    background-color: transparent;
+    border: none;
     color: stencilColor("optimizedCheckout-formChecklist-color");
+
+    &:only-child {
+        border-radius: 0;
+    }
 }
 
 .optimizedCheckout-form-checklist-item {
     background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColor");
+    border: 1px solid;
     border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
+    border-radius: 20px;
+    color: stencilColor("optimizedCheckout-formChecklist-color");
+    margin-bottom: 20px;
+    transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+
+    &:hover {
+        border-color: stencilColor("optimizedCheckout-link-color");
+    }
+
+    &:last-child {
+        border: 1px solid;
+        border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
+        margin-bottom: 0;
+
+        &:hover {
+            border-color: stencilColor("optimizedCheckout-link-color");
+        }
+    }
+
+    .form-label {
+        align-items: center;
+        display: flex;
+        font-size: 13px;
+        font-weight: 400;
+        justify-content: space-between;
+        letter-spacing: 0;
+        min-height: auto;
+        padding: 15px 20px;
+        padding-left: 65px;
+        text-transform: none;
+
+        &[for=radio-sagepay] .creditCardTypes-list li {
+            &:nth-child(2), &:nth-child(4), &:nth-child(5) {
+                display: none;
+            }
+        }
+
+        .shippingOption-price {
+            font-weight: 600;
+        }
+
+        .shippingOptionLabel {
+            width: 100%;
+        }
+    }
+
+    .form-checklist-body {
+        margin: 0 20px;
+
+        .optimizedCheckout-form-input {
+            background-color: #fff;
+        }
+
+        .form-ccFields-field--ccCvv, .form-field--ccExpiry {
+            min-width: 125px;
+        }
+
+        .form-label {
+            font-size: 11px;
+            padding: 0;
+        }
+    }
 }
 
 .optimizedCheckout-form-checklist-item:hover,
+.optimizedCheckout-form-checklist-item:focus,
+.optimizedCheckout-form-checklist-item:active,
 .optimizedCheckout-form-checklist-item--selected {
-    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColorSelected");
-    border-color: stencilColor("optimizedCheckout-formChecklist-borderColor");
+    background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColor");
+    border-color: stencilColor("optimizedCheckout-link-color");
+    outline: none;
+
+    &:last-child {
+        border: 1px solid;
+        border-color: stencilColor("optimizedCheckout-link-color");
+        margin-bottom: 0;
+
+        &:hover {
+            border-color: stencilColor("optimizedCheckout-link-color");
+        }
+    }
 }
 
 .optimizedCheckout-form-checklist-checkbox {
     ~ .form-label::after,
     ~ .form-label::before {
-        background-color: stencilColor("optimizedCheckout-formField-backgroundColor");
-        border-color: stencilColor("optimizedCheckout-formField-borderColor");
-    }
-
-    &:focus ~ .form-label {
-        box-shadow: inset 0 0 0 1px stencilColor("optimizedCheckout-colorFocus");
-    }
-
-    &:checked ~ .form-label::before {
+        background: stencilColor("optimizedCheckout-formField-inputControlColor");
         border-color: stencilColor("optimizedCheckout-formField-inputControlColor");
     }
 
+    &:checked ~ .form-label::before {
+        background-color: stencilColor("optimizedCheckout-formChecklist-backgroundColorSelected");
+        border-color: stencilColor("optimizedCheckout-formField-inputControlColorSelected");
+    }
+
     &:checked ~ .form-label::after {
-        background: stencilColor("optimizedCheckout-formField-inputControlColor");
+        background: stencilColor("optimizedCheckout-formField-inputControlColorSelected");
     }
 }
 

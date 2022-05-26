@@ -6,20 +6,16 @@ blog:
         summary: 200
 ---
 {{#partial "page"}}
+    <h1 class="page-heading">{{ blog.name }}</h1>
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-<section class="page">
-    {{#unless theme_settings.hide_blog_page_heading }}
-        <h1 class="page-heading">{{ blog.name }}</h1>
-    {{/unless}}
+    <section class="page">
+        {{#each blog.posts}}
+            {{> components/blog/post-list post=this}}
+        {{/each}}
 
-    {{#each blog.posts}}
-        {{> components/blog/post post=this}}
-    {{/each}}
-
-    {{> components/common/paginator pagination.blog}}
-</section>
-
+        {{> components/common/paginator pagination.blog}}
+    </section>
 {{/partial}}
 {{> layout/base}}

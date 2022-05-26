@@ -2,25 +2,60 @@
 // ACCOUNT
 // =============================================================================
 
-
 // Account layouts
 // -----------------------------------------------------------------------------
 
 .account {
-    margin-bottom: spacing("single");
-}
+    margin-top: 40px;
 
-.account--fixed {
+    @include breakpoint("xsmall") {
+        margin-top: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-top: 60px;
+    }
+
     @include breakpoint("medium") {
-        margin: 0 auto;
-        width: grid-calc(8, $total-columns);
+        margin-top: 80px;
     }
 }
 
+.account--fixed {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 920px;
+}
+
 .account--fixedSmall {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    max-width: 550px;
+    text-align: center;
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+        margin-top: 40px;
+    }
+
     @include breakpoint("medium") {
-        margin: 0 auto;
-        width: grid-calc(6, $total-columns);
+        margin-bottom: 80px;
+        margin-top: 60px;
+    }
+
+    p:last-of-type {
+        margin-bottom: spacing("single") * 1.5;
     }
 }
 
@@ -42,23 +77,13 @@
     }
 }
 
-.account-body {
-    @include grid-row($behavior: "nest");
-}
-
-.account-content {
-    @include grid-column(12);
-}
-
 .account-content--fixed {
-
     @include breakpoint("medium") {
         width: grid-calc(8, $total-columns);
     }
 }
 
 .account-content--fixedSmall {
-
     @include breakpoint("medium") {
         width: grid-calc(6, $total-columns);
     }

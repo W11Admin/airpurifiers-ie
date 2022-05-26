@@ -2,40 +2,27 @@
 // WRITE A REVIEW (CSS)
 // =============================================================================
 
-.writeReview-productDetails {
-
-    @include breakpoint("medium") {
-        @include grid-column(6);
-    }
-
-    .product-brand {
-        color: color("greys", "light");
-        margin: 0;
-    }
-
-    .product-title {
-        margin-top: 0;
-    }
-}
-
-
 .writeReview-form {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    margin-bottom: 40px;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+    }
 
     @include breakpoint("medium") {
-        @include grid-column(6);
+        margin-bottom: 80px;
     }
-}
 
-.writeReview-productImage-container {
-
-    @include lazy-loaded-padding("product_size");
-    position: relative;
-
-    img {
-        @include lazy-loaded-img;
-        /* Object-fit polyfill */
-        font-family: "object-fit: contain;";
-        height: 100%;
-        object-fit: contain;
+    @include breakpoint("large") {
+        margin-bottom: 100px;
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
     }
 }

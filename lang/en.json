@@ -5,8 +5,8 @@
     },
     "footer": {
         "title": "Footer Start",
-        "brands": "Popular Brands",
-        "navigate": "Navigate",
+        "brands": "Brands",
+        "navigate": "Support",
         "info": "Info",
         "categories": "Categories",
         "call_us": "Call us at {phone_number}",
@@ -17,9 +17,9 @@
     },
     "blog": {
         "recent_posts": "Recent Posts",
-        "label": "Blog",
+        "label": "Our Blog",
         "posted_by": "Posted by {name}",
-        "read_more": "read more"
+        "read_more": "Read More"
     },
     "unavailable": {
         "hibernation_title": "We'll be back",
@@ -214,7 +214,7 @@
     },
     "compare": {
         "button": "Compare Products",
-        "header": "Comparing {products, plural, one {# Product} other {# Products}}",
+        "header": "Compare Products",
         "remove": "Remove",
         "no_remove": "At least 2 products are needed to make a valid comparison.",
         "add_to_cart": "Add to cart",
@@ -256,11 +256,11 @@
         }
     },
     "create_account": {
-        "heading": "New Account",
+        "heading": "Create Account",
         "created": {
-            "heading": "Your account has been created",
+            "heading": "Account Created",
             "intro": "Thank you for creating your account at {store_name}. Your account details have been emailed to <strong>{email}</strong>",
-            "continue": "Continue Shopping"
+            "continue": "Continue shopping"
         },
         "recaptcha_title": "Google recaptcha"
     },
@@ -292,15 +292,15 @@
             "orders": "Orders",
             "returns": "Returns",
             "messages": "Messages ({num_new_messages})",
-            "wishlists": "Wish Lists",
+            "wishlists": "Wish List",
             "recently_viewed": "Recently Viewed",
-            "settings": "Account Settings",
+            "settings": "Settings",
             "addresses": "Addresses",
             "payment_methods": "Payment Methods"
         },
         "mobile_nav": {
             "messages": "Messages",
-            "wishlists": "Wish Lists"
+            "wishlists": "Wish List"
         },
         "addresses": {
             "heading": "Addresses",
@@ -308,7 +308,7 @@
             "primary": "Primary",
             "phone": "Phone:",
             "new_address": "New Address",
-            "no_addresses": "You currently have no addresses added to your profile"
+            "no_addresses": "You currently have not added any addresses to your profile. For a faster checkout experience, please add one or more delivery addresses."
         },
         "messages": {
             "heading": "Messages",
@@ -317,7 +317,7 @@
         },
         "orders": {
             "heading": "Orders",
-            "none": "You haven't placed any orders with us. When you do, their status will appear on this page.",
+            "none": "You haven't completed any orders with us yet. When you do, their status and details will be available at any time from this page.",
             "return": {
                 "already_returned": "This order contains no products that can be returned. Have you already returned all of the items within this order?",
                 "back_button": "Go back",
@@ -337,11 +337,11 @@
             "order_placed": "Order Placed",
             "last_update": "Last Update",
             "list": {
-                "order_number": "Order #{number}",
-                "product_details": "{num_products, plural, one {1 product} other {# products}} totaling {cost}"
+                "order_number": "APIE{number}",
+                "product_details": "Order Total: {cost}"
             },
             "details": {
-                "heading": "Order #{number}",
+                "heading": "APIE{number}",
                 "order_contents": "Order Contents",
                 "ship_to": "Ship To",
                 "ship_to_multi": "Items shipped to {street}, {city}, {state}, {zip}, {country}",
@@ -461,13 +461,13 @@
         },
         "recent_items": {
             "heading" : "Recently Viewed",
-            "no_items": "The items you've recently looked at on our site will appear below."
+            "no_items": "You haven't viewed any items on our site yet. The items you've recently looked at on our site will appear below once you start to explore our collections."
         },
         "wishlists": {
-            "heading": "Wish Lists",
+            "heading": "Wish List",
             "tag_line": "Fill in the form below to create a new Wish List. Click the \"Create Wish List\" button when you're done.",
             "new": "New Wish List",
-            "you_have_none": "You have no Wish Lists, add one now.",
+            "you_have_none": "You have no Wish List, add one now.",
             "empty_wishlist": "Your Wish List is empty. When you add items to your Wish List they will appear here.",
             "num_items": "Items",
             "add_item": "Add to Wish List",
@@ -478,7 +478,7 @@
             "add": "Add Wish List",
             "delete_all": "Delete All",
             "edit": "Edit Wish List",
-            "view_heading": "Wish List: {name}",
+            "view_heading": "Wish List",
             "share_intro": "Share this Wish List with friends:",
             "num_products": "{num_products, plural, one {1 product} other {# products}}",
             "create": "Create Wish List",
@@ -883,8 +883,8 @@
         "tabs_accesibility_hint": "Use left and right arrows to navigate between tabs."
     },
     "page_not_found": {
-        "page_heading": "404 Error - Page not found",
-        "message": "Uh oh, looks like the page you are looking for has moved or no longer exists."
+        "page_heading": "Page Not Found",
+        "message": "Uh oh, it looks like the page you are looking for has either moved or no longer exists. We apologise for the inconvenience."
     },
     "server_error": {
         "page_heading": "Something Went Wrong...",

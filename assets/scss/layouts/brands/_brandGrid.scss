@@ -10,29 +10,37 @@
 //
 // -----------------------------------------------------------------------------
 
-.brandGrid {
-
+.brand-list {
     @include u-listBullets("none");
     @include grid-row($behavior: "nest");
-    font-size: 0; // 1
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 60px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 80px;
+    }
+}
+
+.brand-item {
+    @include grid-column(6);
     margin-bottom: spacing("single");
 
-    .brand {
-        @include grid-column(6, $float: none);
-        display: inline-block;
-        font-size: fontSize("base"); // 1
-        vertical-align: top;
+    @include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
+    }
 
-        @include breakpoint("small") {
-            width: grid-calc(4, $total-columns);
-        }
-
-        @include breakpoint("medium") {
-            width: grid-calc(3, $total-columns);
-        }
-
-        .card-title {
-            text-align: center;
-        }
+    @include breakpoint("medium") {
+        width: grid-calc(3, $total-columns);
     }
 }

@@ -1,0 +1,19 @@
+<article class="blog">
+    <div class="blog-post-figure">
+        <a href="{{post.url}}">
+            {{#if post.thumbnail}}
+                {{> components/common/responsive-img
+                    image=post.thumbnail
+                    fallback_size=theme_settings.blog_size
+                    lazyload=theme_settings.lazyload_mode
+                }}
+            {{/if}}
+        </a>
+    </div>
+    <div class="blog-post-body">
+        <h2 class="blog-post-title">{{post.title}}</h2>
+        <span class="blog-post-date">{{post.date_published}}</span>
+        <p>{{{post.summary}}}...</p>
+        <a class="button button--primary" href="{{url}}" aria-label="{{post.title}} {{lang 'blog.read_more'}}">{{lang 'blog.read_more'}}</a>
+    </div>
+</article>

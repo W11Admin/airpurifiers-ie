@@ -3,40 +3,27 @@ brands:
 ---
 
 {{#partial "page"}}
+<h1 class="page-heading">{{lang 'brand.label'}}</h1>
 
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
 <section class="page">
-    <h1 class="page-heading">{{lang 'brand.label'}}</h1>
-    {{{region name="brands_below_header"}}}
-    <ul class="brandGrid">
-        {{#each brands}}
-            <li class="brand">
-                <article class="card {{#if alternate}}card--alternate{{/if}}">
-                    <figure class="card-figure">
-                        <a class="card-figure__link" aria-label="{{name}}" href="{{url}}">
-                            <div class="card-img-container">
-                                {{> components/common/responsive-img
-                                    image=image
-                                    class="card-image"
-                                    fallback_size=../theme_settings.brand_size
-                                    lazyload=../theme_settings.lazyload_mode
-                                    default_image=../theme_settings.default_image_brand
-                                }}
-                            </div>
-                        </a>
-                    </figure>
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="{{url}}">{{name}}</a>
-                        </h3>
-                    </div>
-                </article>
-            </li>
-        {{/each}}
-    </ul>
-    {{> components/common/paginator pagination.brands}}
-    {{{region name="brands_below_content"}}}
+    <div class="page-content">
+        {{{region name="brands_below_header"}}}
+        <ul class="brand-list">
+            {{#each brands}}
+                <li class="brand-item">
+                    <a class="brand-card" href="{{url}}">
+                        <figure class="brand-card-image-wrapper">
+                            <img src="{{cdn (concat (concat 'webdav:images/brand-carousel/' name) '-card-bg.jpg')}}">
+                        </figure>
+                        <span class="brand-name">{{name}}</span>
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        {{{region name="brands_below_content"}}}
+    </div>
 </section>
 {{/partial}}
 {{> layout/base}}

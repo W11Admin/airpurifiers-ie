@@ -28,6 +28,14 @@ category:
     </article>
 
     <main class="page">
+        <div class="page-actions mobile">
+            <form class="actionBar" method="get" data-sort-by>
+                <button class="button button--primary facetedSearch-toggle" type="button"
+                    name="faceted-search-toggle">Filter</button>
+                {{> components/products/filter sort=pagination.category.sort}}
+            </form>
+        </div>
+
         {{#if category.faceted_search_enabled}}
             <aside class="page-sidebar" id="faceted-search-container">
                 {{> components/category/sidebar}}

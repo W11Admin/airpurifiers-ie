@@ -11,135 +11,111 @@
 // -----------------------------------------------------------------------------
 
 .addressList {
-    font-size: 0; // 1
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
+    margin-bottom: 30px;
     margin-left: -(spacing("half"));
     margin-right: -(spacing("half"));
+
+    @include breakpoint("xsmall") {
+        margin-bottom: 40px;
+    }
+
+    @include breakpoint("small") {
+        margin-bottom: 50px;
+    }
+
+    @include breakpoint("medium") {
+        margin-bottom: 70px;
+    }
 }
 
 .address {
     display: inline-block;
+    margin-bottom: spacing("single");
     padding: 0 spacing("half");
     vertical-align: top;
     width: 100%;
 
-    @include breakpoint("small") {
+    @include breakpoint("xsmall") {
         width: grid-calc(6, $total-columns);
     }
 
-    @include breakpoint("large") {
+    @include breakpoint("small") {
         width: grid-calc(4, $total-columns);
+    }
+
+    @include breakpoint("large") {
+        width: grid-calc(3, $total-columns);
     }
 }
 
+.address-card {
+    align-items: center;
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: (spacing("single") - spacing("sixth")) spacing("single");
 
-// Address
-// -----------------------------------------------------------------------------
-//
-// 1. Redefine the font-size as we're removing white-space on the parent by
-//    reducing the size to 0.
-// 2. Adding a min-height to improve the consistency of the address blocks.
-// 3. On larger screens we position: absolute; the .form-actions so they're
-//    consistently in line. We need to adjust padding to accommodate this.
-//
-// -----------------------------------------------------------------------------
+    @include breakpoint("medium") {
+        padding: (spacing("single") + spacing("third"))
+            (spacing("single") + spacing("half"));
+    }
 
-.panel--address {
-    font-size: fontSize("base"); // 1
-    position: relative;
-
-    .panel-body {
-        min-height: remCalc(250px); // 2
-        padding: spacing("single");
-
-        @include breakpoint("small") {
-            padding: spacing("single") spacing("single") (spacing("single") + spacing("double")); // 3
-        }
+    form {
+        width: 100%;
     }
 
     .form-actions {
-        margin-bottom: -(spacing("half"));
         margin-top: spacing("single");
-        text-align: left;
+        width: 100%;
 
-        @include breakpoint("small") { // 3
-            bottom: spacing("single");
-            position: absolute;
-            width: auto;
+        a {
+            color: $color-primary;
+            margin: 0;
+            padding: 0;
+            width: unset;
+
+            & + .button {
+                margin: 0;
+                margin-left: spacing("single");
+            }
         }
 
-        .button {
-            margin-bottom: spacing("half");
-
-            + .button {
-                margin-left: 0;
-                margin-top: 0;
-
-                @include breakpoint("small") {
-                    margin-left: spacing("quarter");
-                }
-            }
+        button {
+            color: $color-error;
+            margin: 0;
+            padding: 0;
+            width: unset;
         }
     }
 }
 
-.address-title {
-    margin: 0 0 spacing("half");
-    text-transform: none;
+.address-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: spacing("third");
+    width: 100%;
 }
 
 .address-details {
-    list-style: none;
-    margin: 0 0 spacing("half");
-}
-
-.address-details--postal {
-    font-size: fontSize("smaller");
-}
-
-.address-label,
-.address-description {
-    display: inline-block;
-    font-size: fontSize("base");
-    margin: 0;
-}
-
-.address-label {
-    color: stencilColor("color-textSecondary");
-    font-weight: fontWeight("normal");
-}
-
-.panel--newAddress {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-
-    &:hover {
-        .address-title {
-            color: stencilColor("color-textLink--hover");
-        }
-    }
-
-    .panel-body {
-        background-color: transparent;
-        border: container("border");
-        display: block;
-    }
-
-    .address-title {
-        margin-bottom: 0;
-        transition: all 0.15s ease;
-    }
-}
-
-.address-addNew {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateX(-50%) translateY(-55%);
+    font-size: 14px;
+    font-style: normal;
+    width: 100%;
 }
 
 .address-symbol {
-    font-size: fontSize("hero");
+    font-size: 70px;
     line-height: 1;
+}
+
+.address-title {
+    color: $color-textBase;
+    font-size: 16px;
+    font-weight: 500;
 }

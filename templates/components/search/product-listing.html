@@ -1,8 +1,5 @@
 {{inject 'noCompareMessage' (lang 'compare.no_compare')}}
 
-{{#if product_results.products.length}}
-    {{> components/products/filter sort=pagination.product_results.sort}}
-{{/if}}
 <div {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}}>
     {{#if theme_settings.product_list_display_mode '===' 'grid'}}
         {{#if settings.data_tag_enabled}}
@@ -13,7 +10,7 @@
     {{else}}
         {{#if settings.data_tag_enabled}}
             {{> components/products/list products=product_results.products show_compare=product_results.show_compare event="list" theme_settings=theme_settings}}
-         {{else}}
+        {{else}}
             {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings}}
         {{/if}}
     {{/if}}

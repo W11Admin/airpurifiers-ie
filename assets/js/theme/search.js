@@ -134,6 +134,18 @@ export default class Search extends CatalogPage {
     }
 
     onReady() {
+        $(document).on('click', '.facetedSearch-toggle', () => {
+            $('#facetedSearch').toggleClass('is-open');
+            $('.facetedSearch-toggle').toggleClass('is-open');
+            $('body').toggleClass('has-activeNavPages');
+        });
+
+        $(document).on('click', '.facetedSearch-close', () => {
+            $('#facetedSearch').removeClass('is-open');
+            $('.facetedSearch-toggle').removeClass('is-open');
+            $('body').removeClass('has-activeNavPages');
+        });
+
         compareProducts(this.context);
         this.arrangeFocusOnSortBy();
 

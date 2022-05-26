@@ -1,0 +1,70 @@
+<h2 class="productView-section-title">Specifications</h2>
+<section class="productView-specifications">
+    {{#if product.brand}}
+        <dl>
+            <dt>Brand:</dt>
+            <dd>{{product.brand.name}}</dd>
+        </dl>
+    {{/if}}
+    {{#if product.custom_fields}}
+        {{#each product.custom_fields}}
+            {{#unless name "Banner"}}
+                {{#unless name "Room Size"}}
+                    {{#unless name "Filter Type"}}
+                        {{#unless name "CADR Rating"}}
+                            <dl>
+                                <dt>{{name}}:</dt>
+                                <dd>{{{value}}}</dd>
+                            </dl>
+                        {{/unless}}
+                    {{/unless}}
+                {{/unless}}
+            {{/unless}}
+        {{/each}}
+    {{/if}}
+    {{#all product.depth theme_settings.show_product_dimensions}}
+        <dl>
+            <dt>Depth:</dt>
+            <dd>
+                {{truncate product.depth 4}}
+                {{#if settings.measurements.length '==' 'Centimeters'}}
+                    {{lang 'products.measurement.metric'}}
+                {{else}}
+                    {{lang 'products.measurement.imperial'}}
+                {{/if}}
+            </dd>
+        </dl>
+    {{/all}}
+    {{#all product.height theme_settings.show_product_dimensions}}
+        <dl>
+            <dt>Height:</dt>
+            <dd>
+                {{truncate product.height 4}}
+                {{#if settings.measurements.length '==' 'Centimeters'}}
+                    {{lang 'products.measurement.metric'}}
+                {{else}}
+                    {{lang 'products.measurement.imperial'}}
+                {{/if}}
+            </dd>
+        </dl>
+    {{/all}}
+    {{#all product.width theme_settings.show_product_dimensions}}
+        <dl>
+            <dt>Width:</dt>
+            <dd>
+                {{truncate product.width 4}}
+                {{#if settings.measurements.length '==' 'Centimeters'}}
+                    {{lang 'products.measurement.metric'}}
+                {{else}}
+                    {{lang 'products.measurement.imperial'}}
+                {{/if}}
+            </dd>
+        </dl>
+    {{/all}}
+    {{#all product.weight theme_settings.show_product_weight}}
+        <dl>
+            <dt>Weight:</dt>
+            <dd style="text-transform: lowercase;" data-product-weight>{{truncate product.weight 6}}</dd>
+        </dl>
+    {{/all}}
+    </section>

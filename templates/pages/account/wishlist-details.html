@@ -1,31 +1,20 @@
 {{#partial "page"}}
-<div class="account" data-pagination-wishlist>
+    <h1 class="page-heading">{{lang 'account.wishlists.view_heading' name=wishlist.name}}</h1>
 
-    {{#if wishlist.is_editable}}
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    {{/if}}
-    <h2 class="page-heading">{{lang 'account.wishlists.view_heading' name=wishlist.name}}</h2>
-    {{#if wishlist.is_editable}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="account" data-pagination-wishlist>
         {{> components/account/navigation account_page='wishlists'}}
-    {{/if}}
 
-    {{#if wishlist.is_editable}}
-        {{#if wishlist.is_public '>' 0}}
-            <div class="panel share-wishlist">
-                <div class="panel-body">
-                    <h5>{{lang 'account.wishlists.share_intro'}}</h5>
-                    <input class="form-input" value="{{settings.base_url}}{{wishlist.share_url}}" readonly>
-                </div>
-            </div>
+        {{#if wishlist.items}}
+            {{> components/account/wishlist-item-list show_remove=wishlist.is_editable}}
+        {{else}}
+            <section class="account--fixedSmall">
+                <p>You haven't added any products to your wish list yet. Take a look at our collections and we'll keep any products
+                    you add here for you.</p>
+                <a class="button button--primary" href="/">Continue Shopping</a>
+            </section>
         {{/if}}
-    {{/if}}
-
-    {{#if wishlist.items}}
-        {{> components/account/wishlist-item-list show_remove=wishlist.is_editable}}
-    {{else}}
-        {{> components/common/alert/alert-info (lang 'account.wishlists.empty_wishlist')}}
-    {{/if}}
-
-</div>
+    </div>
 {{/partial}}
 {{> layout/base}}

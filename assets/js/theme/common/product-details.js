@@ -422,24 +422,9 @@ export default class ProductDetails extends ProductDetailsBase {
                 return showAlertModal(tmp.textContent || tmp.innerText);
             }
 
-            // Open preview modal and update content
-            if (this.previewModal) {
-                this.previewModal.open();
-
-                if (window.ApplePaySession) {
-                    this.previewModal.$modal.addClass('apple-pay-supported');
-                }
-
-                if (!this.checkIsQuickViewChild($addToCartBtn)) {
-                    this.previewModal.$preModalFocusedEl = $addToCartBtn;
-                }
-
-                this.updateCartContent(this.previewModal, response.data.cart_item.id);
-            } else {
-                this.$overlay.show();
-                // if no modal, redirect to the cart page
-                this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
-            }
+            this.$overlay.show();
+            // if no modal, redirect to the cart page
+            this.redirectTo(response.data.cart_item.cart_url || this.context.urls.cart);
         });
 
         this.setLiveRegionAttributes($addToCartBtn.next(), 'status', 'polite');

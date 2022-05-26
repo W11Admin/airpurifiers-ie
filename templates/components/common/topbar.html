@@ -1,4 +1,7 @@
 <a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>
+
+{{> components/common/custom-messages}}
+
 {{#if banners.top}}
     <div class="banners" data-banner-location="top">
         {{#each (limit banners.top_metadata 1)}}
@@ -12,8 +15,33 @@
         {{/each}}
     </div>
 {{/if}}
+
 <section class="topbar">
-    <ul class="topbar-list">
+    <ul class="topbar-list" data-list-name="topbar" data-slick='{
+        "arrows": false,
+        "autoplay": true,
+        "autoplaySpeed": 3000,
+        "dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "speed": 750,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "responsive": [
+            {
+                "breakpoint": 1024,
+                "settings": {
+                    "slidesToShow": 3
+                }
+            },
+            {
+                "breakpoint": 768,
+                "settings": {
+                    "slidesToShow": 2
+                }
+            }
+        ]
+    }'>
         <li class="topbar-item">
             <a href="/delivery-rates/">Free Delivery in Ireland on Orders Over €150</a>
         </li>

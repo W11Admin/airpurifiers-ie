@@ -1,0 +1,80 @@
+<section class="productView-details">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <h1 class="productView-title" {{#if schema}}itemprop="name" {{/if}}>{{product.title}}</h1>
+
+    {{product.detail_messages}}
+
+    <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="product_id" value="{{product.id}}" />
+
+        {{#if product.num_reviews '>' 0}}
+            <div class="productView-rating" {{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating"
+                itemscope itemtype="http://schema.org/AggregateRating" {{/if}}{{/if}}>
+                {{#if settings.show_product_rating}}
+                    {{#if schema}}
+                        <meta itemprop="ratingValue" content="{{product.rating}}">
+                        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    {{/if}}
+                    {{> components/products/ratings rating=product.rating}}
+                    <span class="productView-reviewLink">
+                        <a href="{{product.url}}#product-reviews">
+                            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                        </a>
+                    </span>
+                {{/if}}
+            </div>
+        {{/if}}
+
+        {{#if product.price}}
+            <div class="productView-price">
+                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    {{> components/products/price price=product.price schema_org=schema}}
+        {{else}}
+            {{> components/common/login-for-pricing}}
+                {{/or}}
+            </div>
+        {{/if}}
+
+        {{#if product.options}}
+            <div class="productView-options" data-product-option-change>
+                <div class="productOptions-list">
+                    {{#each product.options}}
+                        {{{dynamicComponent 'components/products/options'}}}
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{{region name="product_below_price"}}}
+
+        <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+            <label class="form-label form-label--alternate">
+                {{lang 'products.current_stock'}}
+                <span data-product-stock>{{product.stock_level}}</span>
+            </label>
+        </div>
+
+        {{#if product.availability}}
+            <p class="productView-availability">{{product.availability}}</p>
+        {{/if}}
+
+        {{#if product.release_date}}
+            <p class="productView-date">{{product.release_date}}</p>
+        {{/if}}
+
+        {{#unless product.can_purchase}}
+            <strong class="productView-stock">Out of Stock</strong>
+        {{/unless}}
+
+        {{#if product.can_purchase}}
+            {{> components/products/add-to-cart}}
+        {{/if}}
+    </form>
+
+    {{#if settings.show_wishlist}}
+        {{> components/common/wishlist-dropdown}}
+    {{/if}}
+</section>

@@ -1,6 +1,6 @@
-<li class="navPage-subMenu-item">
+<li class="navPage-subMenu-item navPage-page-item">
     {{#if children}}
-        <div class="navPage-subMenu-action navPages-action has-subMenu" aria-label="{{name}}">
+        <div class="navPage-subMenu-action navPage-page-action navPages-action has-subMenu" aria-label="{{name}}">
             {{name}}
         </div>
         <ul class="navPage-childList" id="navPages-{{id}}">
@@ -13,7 +13,7 @@
             {{/each}}
         </ul>
     {{else}}
-        <a class="navPage-subMenu-action navPages-action" href="{{url}}" aria-label="{{name}}">
+        <a class="navPage-subMenu-action navPage-page-action navPages-action" href="{{url}}" aria-label="{{name}}">
             {{name}}
         </a>
     {{/if}}

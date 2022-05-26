@@ -1,8 +1,12 @@
 {{#partial "page"}}
+    <h1 class="page-heading">{{blog.post.title}}</h1>
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-{{> components/blog/post post=blog.post show_tags=true is_blog_post=true}}
-
+    <div class="page">
+        <section class="page-content page-content--centered">
+            {{> components/blog/post post=blog.post show_tags=true is_blog_post=true}}
+        </section>
+    </div>
 {{/partial}}
 {{> layout/base}}

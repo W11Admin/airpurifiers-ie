@@ -12,6 +12,8 @@
 // -----------------------------------------------------------------------------
 
 .card {
+    position: relative;
+
     &:focus-within {
         .card-figcaption {
             opacity: 1;
@@ -23,6 +25,41 @@
             opacity: 1;
         }
     }
+
+    &:hover {
+        .card-image {
+            transform: scale(0.97);
+        }
+
+        .card-figcaption {
+            opacity: 1;
+        }
+    }
+}
+
+.card-compare {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+}
+
+// Product card banner
+// -----------------------------------------------------------------------------
+.card-banner {
+    background-color: $color-secondary;
+    border-radius: 50px;
+    color: $color-white;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    padding: spacing("quarter") spacing("half");
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 10;
+
+    &.dark {
+        background-color: $color-textBase;
+    }
 }
 
 .card-figure {
@@ -32,12 +69,6 @@
     overflow: hidden;
     padding: 10px;
     position: relative;
-
-    &:hover {
-        .card-figcaption {
-            opacity: 1;
-        }
-    }
 
     &__link {
         background-color: $color-black;
@@ -54,6 +85,7 @@
 
 .card-image {
     border: 0;
+    transition: transform 750ms ease;
     width: 100%;
 
     &::after {
@@ -65,6 +97,7 @@
     display: none;
     margin: $card-figcaption-margin;
     pointer-events: none; // 1
+    transition: opacity 750ms ease;
 
     @include breakpoint("medium") {
         display: block;
@@ -72,7 +105,10 @@
 }
 
 .card-figcaption-body {
-    display: $card-figcaption-body-display;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     pointer-events: all; // 1
     transform: translate3d(0, -50%, 0); // 2
 }
@@ -108,7 +144,7 @@
         font-size: 17px;
     }
 
-    .non-sale-price--withTax {
+    .non-sale-price-section {
         color: $color-textBase;
         font-size: 12px;
         font-weight: 400;
@@ -129,13 +165,22 @@
 }
 
 .card-figcaption-button {
+    align-items: center;
+    background-color: $color-secondary;
     border: $card-figcaption-button-border;
-    display: $card-figcaption-button-display;
-    margin: $card-figcaption-button-margin;
+    color: $color-white;
+    display: flex;
+    justify-content: center;
+    margin: spacing("third");
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+    }
 
     &:active {
-        background-color: $card-figcaption-button-backgroundHover;
-        border: $card-figcaption-button-border;
+        background-color: $color-primary;
+        color: $color-white;
     }
 
     .card-figcaption-body & {
@@ -148,6 +193,12 @@
     + .card-figcaption-button {
         margin: $card-figcaption-button-margin;
     }
+
+    input {
+        margin-right: spacing("third");
+        position: relative;
+        top: -1px;
+    }
 }
 
 .card-body {
@@ -155,6 +206,51 @@
 
     .card-text {
         color: $color-primary;
+    }
+}
+
+.card-table {
+    background-color: $color-greyLightest;
+    border-radius: $global-radius;
+    margin: 0;
+    margin-top: spacing("half");
+    width: 100%;
+
+    tr {
+        &:first-child {
+            th,
+            td {
+                padding-top: spacing("half");
+            }
+        }
+
+        &:last-child {
+            th,
+            td {
+                padding-bottom: spacing("single");
+            }
+        }
+    }
+
+    th {
+        font-weight: 500;
+        padding: spacing("sixth") spacing("single");
+        text-align: right;
+    }
+
+    td {
+        padding: spacing("sixth") spacing("single");
+
+        &.card-table-name {
+            font-size: 16px;
+            font-weight: 500;
+            padding-bottom: spacing("single");
+            text-align: center;
+        }
+
+        .non-sale-price-section {
+            display: none;
+        }
     }
 }
 

@@ -1,16 +1,25 @@
+---
+customer:
+    wishlists:
+        limit: 10
+---
+
 {{#partial "page"}}
-<div class="account">
+    <h1 class="page-heading">{{lang 'account.recent_items.heading' }}</h1>
+
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.recent_items.heading' }}</h2>
-    {{> components/account/navigation account_page='recent_items'}}
 
-    {{#unless customer.recently_viewed_products.items}}
-        {{> components/common/alert/alert-info (lang 'account.recent_items.no_items')}}
-    {{/unless}}
+    <div class="account">
+        {{> components/account/navigation account_page='recent_items'}}
 
-    <div>
-        {{> components/products/grid products=customer.recently_viewed_products.items show_compare=customer.recently_viewed_products.show_compare}}
+        {{#if customer.recently_viewed_products.items}}
+            {{> components/products/grid products=customer.recently_viewed_products.items show_compare=customer.recently_viewed_products.show_compare}}
+        {{else}}
+            <section class="account--fixedSmall">
+                <p>{{lang 'account.recent_items.no_items'}}</p>
+                <a class="button button--primary" href="/">Continue Shopping</a>
+            </section>
+        {{/if}}
     </div>
-</div>
 {{/partial}}
 {{> layout/base}}

@@ -15,16 +15,16 @@
 
 .heroCarousel {
     background-color: $carousel-bgColor;
-    max-height: 400px;
+    max-height: 450px;
     min-width: 100%;
     width: 1px;
 
     @include breakpoint("xsmall") {
-        max-height: 500px;
+        max-height: 550px;
     }
 
     @include breakpoint("medium") {
-        max-height: 650px;
+        max-height: 700px;
     }
 
     @include breakpoint("large") {
@@ -77,12 +77,24 @@
         }
 
         .slick-dots {
-            bottom: 120px;
+            bottom: 60px;
             display: flex !important;
             flex-direction: column;
             margin: -8px;
             position: relative;
             width: auto;
+
+            @include breakpoint("xsmall") {
+                bottom: 80px;
+            }
+
+            @include breakpoint("medium") {
+                bottom: 100px;
+            }
+
+            @include breakpoint("large") {
+                bottom: 120px;
+            }
 
             // scss-lint:disable SelectorDepth, NestingDepth
             li {
@@ -116,14 +128,14 @@
     }
 
     .heroCarousel-image-wrapper {
-        height: 400px;
+        height: 450px;
 
         @include breakpoint("xsmall") {
-            height: 500px;
+            height: 550px;
         }
 
         @include breakpoint("medium") {
-            height: 650px;
+            height: 700px;
         }
 
         @include breakpoint("large") {
@@ -168,16 +180,22 @@
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
     padding: 0 $container-padding;
     width: 100%;
 
+    @include breakpoint("xsmall") {
+        margin-bottom: 80px;
+    }
+
     @include breakpoint("medium") {
+        margin-bottom: 100px;
         max-width: $layout-widthMax + ($container-padding * 1.5);
         padding: 0 ($container-padding * 1.5);
     }
 
     @include breakpoint("large") {
+        margin-bottom: 120px;
         max-width: $layout-widthMax + ($container-padding * 2);
         padding: 0 ($container-padding * 2);
     }
@@ -188,20 +206,19 @@
     font-size: 36px;
     line-height: 1.05;
     margin: 0;
+    max-width: 210px;
 
     @include breakpoint("xsmall") {
-        font-size: 40px;
+        font-size: 42px;
+        max-width: 250px;
     }
 
     @include breakpoint("small") {
-        font-size: 50px;
+        font-size: 55px;
+        max-width: 320px;
     }
 
     @include breakpoint("medium") {
-        font-size: 60px;
-    }
-
-    @include breakpoint("large") {
         font-size: 70px;
         max-width: 420px;
     }
@@ -210,13 +227,16 @@
 .heroCarousel-description {
     color: $color-white;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 300;
     margin: 30px 0 40px 0;
-    max-width: 280px;
+    max-width: 300px;
+
+    @include breakpoint("xsmall") {
+        max-width: 400px;
+    }
 
     @include breakpoint("medium") {
         font-size: 18px;
-        font-weight: 300;
         margin: 40px 0 50px 0;
         max-width: 550px;
     }

@@ -28,6 +28,18 @@ export default class Category extends CatalogPage {
     }
 
     onReady() {
+        $(document).on('click', '.facetedSearch-toggle', () => {
+            $('#facetedSearch').toggleClass('is-open');
+            $('.facetedSearch-toggle').toggleClass('is-open');
+            $('body').toggleClass('has-activeNavPages');
+        });
+
+        $(document).on('click', '.facetedSearch-close', () => {
+            $('#facetedSearch').removeClass('is-open');
+            $('.facetedSearch-toggle').removeClass('is-open');
+            $('body').removeClass('has-activeNavPages');
+        });
+
         this.arrangeFocusOnSortBy();
 
         $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));

@@ -4,7 +4,12 @@
 
 .alertBox {
     border-radius: $alert-radius;
+    bottom: 40px;
     color: stencilColor("alert-color");
+    left: 60px;
+    max-width: 450px;
+    position: fixed;
+    z-index: 1;
 }
 
 .alertBox-icon {

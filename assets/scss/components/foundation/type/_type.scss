@@ -37,19 +37,20 @@ cite {
 
 .page-heading {
     line-height: 1.2;
-    margin: 40px 0 (spacing("half") + spacing("third"));
+    margin: 40px auto (spacing("half") + spacing("third"));
+    max-width: 600px;
     text-align: center;
 
     @include breakpoint("xsmall") {
-        margin: 50px 0 spacing("half");
+        margin: 50px auto spacing("half");
     }
 
     @include breakpoint("small") {
-        margin: 60px 0 spacing("half");
+        margin: 60px auto spacing("half");
     }
 
     @include breakpoint("medium") {
-        margin: 80px 0 spacing("half");
+        margin: 80px auto spacing("half");
     }
 }
 
@@ -64,8 +65,21 @@ cite {
 }
 
 .section-heading {
+    font-size: 32px;
     line-height: 1.2;
     margin: 0 0 spacing("single");
+
+    @include breakpoint("xsmall") {
+        font-size: 36px;
+    }
+
+    @include breakpoint("small") {
+        font-size: 42px;
+    }
+
+    @include breakpoint("medium") {
+        font-size: 50px;
+    }
 }
 
 h1 {

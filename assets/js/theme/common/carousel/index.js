@@ -88,30 +88,4 @@ export default function (context) {
             dots: isMultipleSlides,
         });
     });
-
-    function topBarSlick() {
-        $('.topbar-list').slick({
-            arrows: false,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            dots: false,
-            infinite: true,
-            mobileFirst: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-        });
-    }
-
-    $(window).on('load resize orientationchange', () => {
-        const $carousel = $('.topbar-list');
-
-        if (window.matchMedia('(max-width: 1024px)').matches) {
-            if (!$carousel.hasClass('slick-initialized')) {
-                topBarSlick();
-            }
-        } else if ($carousel.hasClass('slick-initialized')) {
-            $carousel.slick('unslick');
-        }
-    });
 }

@@ -1,0 +1,56 @@
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+    <div class="page-banner">
+        <figure class="page-banner-desktop">
+            <img src="{{cdn 'webdav:images/brand-banners/brand-promotion-banner-1-desktop.png'}}" title="Brand Promotion"
+                alt="Brand Promotion Banner">
+        </figure>
+        <figure class="page-banner-mobile">
+            <img src="{{cdn 'webdav:images/brand-banners/brand-promotion-banner-1-mobile.png'}}" title="Brand Promotion"
+                alt="Brand Promotion Banner">
+        </figure>
+    </div>
+
+    <h1 class="page-heading">{{brand.name}}</h1>
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{{region name="brand_below_header"}}}
+    <div class="page">
+        <div class="page-actions mobile">
+            <form class="actionBar" method="get" data-sort-by>
+                <button class="button button--primary facetedSearch-toggle" type="button"
+                    name="faceted-search-toggle">Filter</button>
+                {{> components/products/filter sort=pagination.brand.sort}}
+            </form>
+        </div>
+
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/brand/sidebar}}
+        </aside>
+
+        <div class="page-content" id="product-listing-container">
+            {{#if brand.search_error }}
+                <p>{{lang 'search.errorMessage'}}</p>
+            {{else}}
+                {{#if brand.products}}
+                    {{> components/brand/product-listing}}
+                {{else}}
+                    <p>{{lang 'brands.no_products'}}</p>
+                {{/if}}
+                {{{region name="brand_below_content"}}}
+            {{/if}}
+        </div>
+    </div>
+
+{{/partial}}
+{{> layout/base}}

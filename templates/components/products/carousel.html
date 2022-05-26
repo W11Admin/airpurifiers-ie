@@ -31,7 +31,7 @@
         {{> components/carousel-content-announcement}}
     {{/if}}
 </ul>
-<div class="controls">
+<div class="productCarousel-controls">
     <button id="productCarousel-left">
         <span class="material-symbols-outlined">arrow_back</span>
     </button>
@@ -39,7 +39,9 @@
         <span class="material-symbols-outlined">arrow_forward</span>
     </button>
 
-    <a href="/air-treatment/" class="button button--primary">
-        View All
-    </a>
+    {{#if page_type '===' 'default'}}
+        <a href="/air-treatment/" class="button button--primary">
+            View All
+        </a>
+    {{/if}}
 </div>

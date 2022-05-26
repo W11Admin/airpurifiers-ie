@@ -157,11 +157,27 @@
     }
 
     .brand-name {
-        bottom: 50px;
+        bottom: 25px;
         color: $color-white;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 500;
-        left: 60px;
+        left: 30px;
         position: absolute;
+
+        @include breakpoint("xsmall") {
+            bottom: 30px;
+            left: 40px;
+        }
+
+        @include breakpoint("small") {
+            bottom: 45px;
+            font-size: 20px;
+            left: 55px;
+        }
+
+        @include breakpoint("medium") {
+            bottom: 50px;
+            left: 60px;
+        }
     }
 }

@@ -1,45 +1,81 @@
-{{#if reviews.total}}
-<section class="toggle productReviews" id="product-reviews" data-product-reviews>
-    <h4 class="toggle-title">
-        {{lang 'products.reviews.header' total=reviews.total}}
-        {{#if theme_settings.show_product_reviews}}
-            <a class="toggleLink is-open" data-collapsible href="#productReviews-content">
-                <span class="toggleLink-text toggleLink-text--on">
-                    {{lang 'products.reviews.hide'}}
-                </span>
-                <span class="toggleLink-text toggleLink-text--off">
-                    {{lang 'products.reviews.show'}}
-                </span>
-            </a>
+<section class="productReviews" data-product-reviews>
+    {{#if reviews.total}}
+        <div class="productReviews-content" id="productReviews-content" aria-hidden="false">
+            <ul class="productReviews-list" id="productReviews-list">
+                {{#each reviews.list}}
+                    <li class="productReview">
+                        <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                            <strong itemprop="name" class="productReview-title">{{{ sanitize title }}}</strong>
+                            <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope
+                                itemtype="http://schema.org/Rating">
+                                {{> components/products/ratings rating=rating}}
+                                <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                            </span>
+                            <p itemprop="reviewBody" class="productReview-body">{{{ sanitize text }}}</p>
+                            {{#if name}}
+                                <meta itemprop="author" content="{{name}}">
+                                <span class="productReview-author">
+                                    {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
+                                </span>
+                            {{else}}
+                                <span class="productReview-author">
+                                    {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                                </span>
+                            {{/if}}
+                        </article>
+                    </li>
+                {{/each}}
+            </ul>
+            {{> components/common/paginator pagination.reviews}}
+        </div>
+    {{/if}}
+    <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
+        {{inject 'reviewRating' (lang 'forms.validate.reviews.rating')}}
+        {{inject 'reviewSubject' (lang 'forms.validate.reviews.title')}}
+        {{inject 'reviewComment' (lang 'forms.validate.reviews.comment')}}
+        {{inject 'reviewEmail' (lang 'forms.validate.common.email_address')}}
+        <fieldset class="form-fieldset">
+            <div class="form-row form-row--half">
+                <div class="form-field">
+                    <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating_label'}}
+                        <small>{{lang 'common.required' }}</small>
+                    </label>
+                    <select id="rating-rate" class="form-select" name="revrating">
+                        <option value="">{{lang 'products.reviews.select_rating'}}</option>
+                        {{#for 1 5}}
+                            {{#if ../product.reviews.selected_rating '===' $index}}
+                                <option selected value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}
+                                </option>
+                            {{else}}
+                                <option value="{{$index}}">{{lang (concat 'products.reviews.rating.' $index) }}</option>
+                            {{/if}}
+                        {{/for}}
+                    </select>
+                </div>
+                {{#if product.reviews.author}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=product.reviews.author}}
+                {{else}}
+                    {{> components/common/forms/text id="revfromname" name="revfromname" label=(lang 'products.reviews.form_write.name') value=customer.name}}
+                {{/if}}
+            </div>
+            {{#if product.reviews.show_review_email}}
+                {{#if product.reviews.email}}
+                    {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=product.reviews.email}}
+                {{else}}
+                    {{> components/common/forms/text id="email" name="email" required="false" label=(lang 'products.reviews.form_write.email') value=customer.email}}
+                {{/if}}
+            {{/if}}
+            {{> components/common/forms/text id="revtitle" name="revtitle" required="true" label=(lang 'products.reviews.form_write.subject') value=product.reviews.title}}
+            {{> components/common/forms/multiline id="revtext" name="revtext" required="true" label=(lang 'products.reviews.form_write.comments') value=product.reviews.text}}
+        </fieldset>
+        {{{product.reviews.recaptcha.markup}}}
+        <button type="submit" class="button button--primary">
+            {{lang 'products.reviews.form_write.submit_value' }}
+        </button>
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <input type="hidden" name="action" value="post_review">
+        {{#if product.reviews.throttleToken}}
+            <input type="hidden" name="throttleToken" value="{{product.reviews.throttleToken}}">
         {{/if}}
-    </h4>
-    <div class="toggle-content is-open" id="productReviews-content" aria-hidden="false">
-        <ul class="productReviews-list" id="productReviews-list">
-            {{#each reviews.list}}
-            <li class="productReview">
-                <article>
-                    <header>
-                        <span class="productReview-rating rating--small">
-                            {{> components/products/ratings rating=rating}}
-                            <span class="productReview-ratingNumber">{{ rating }}</span>
-                        </span>
-                        <h5 class="productReview-title">{{{ sanitize title }}}</h5>
-                        {{#if name}}
-                            <p class="productReview-author">
-                                {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
-                            </p>
-                        {{else}}
-                            <p class="productReview-author">
-                                {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
-                            </p>
-                        {{/if}}
-                    </header>
-                    <p class="productReview-body">{{{ sanitize text }}}</p>
-                </article>
-            </li>
-            {{/each}}
-        </ul>
-        {{> components/common/paginator pagination.reviews reload=true}}
-    </div>
+    </form>
 </section>
-{{/if}}

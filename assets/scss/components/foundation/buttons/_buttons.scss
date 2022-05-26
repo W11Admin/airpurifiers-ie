@@ -16,18 +16,26 @@
     }
 }
 
+.button--small {
+    padding: spacing("half") spacing("single");
+}
+
 .button--large {
-    font-size: 17px;
+    font-size: 15px;
 
-    &.button--primary,
-    &.button--secondary {
-        padding: spacing("third");
-        padding-left: spacing("single") + spacing("half");
+    @include breakpoint("small") {
+        font-size: 17px;
 
-        &::after {
-            font-size: 22px;
-            height: spacing("single") + spacing("half");
-            width: spacing("single") + spacing("half");
+        &.button--primary,
+        &.button--secondary {
+            padding: spacing("third");
+            padding-left: spacing("single") + spacing("half");
+
+            &::after {
+                font-size: 22px;
+                height: spacing("single") + spacing("half");
+                width: spacing("single") + spacing("half");
+            }
         }
     }
 }
@@ -42,8 +50,19 @@
     }
 }
 
+.button--tertiary {
+    background-color: $color-greyLightest;
+    color: $color-textBase;
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+}
+
 .button--primary,
-.button--secondary {
+.button--secondary,
+.button--tertiary {
     align-items: center;
     display: flex;
     justify-content: center;

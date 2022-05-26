@@ -1,0 +1,66 @@
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+    <div class="page-banner">
+        <figure class="page-banner-desktop">
+            <img src="{{cdn 'webdav:images/category-banners/category-promotion-banner-3-desktop.png'}}" title="Category Promotion"
+                alt="Category Promotion Banner">
+        </figure>
+        <figure class="page-banner-mobile">
+            <img src="{{cdn 'webdav:images/category-banners/category-promotion-banner-3-mobile.png'}}" title="Category Promotion"
+                alt="Category Promotion Banner">
+        </figure>
+    </div>
+
+    {{#unless theme_settings.hide_category_page_heading }}
+        <h1 class="page-heading">{{category.name}}</h1>
+        {{{region name="category_below_header"}}}
+    {{/unless}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <article class="page-description">
+        {{{category.description}}}
+    </article>
+
+    <main class="page">
+        <div class="page-actions mobile">
+            <form class="actionBar" method="get" data-sort-by>
+                <button class="button button--primary facetedSearch-toggle" type="button"
+                    name="faceted-search-toggle">Filter</button>
+                {{> components/products/filter sort=pagination.category.sort}}
+            </form>
+        </div>
+
+        {{#if category.faceted_search_enabled}}
+            <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{else if category.subcategories}}
+            <aside class="page-sidebar" id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </aside>
+        {{else if category.shop_by_price}}
+            {{#if theme_settings.shop_by_price_visibility}}
+                <aside class="page-sidebar" id="faceted-search-container">
+                    {{> components/category/sidebar}}
+                </aside>
+            {{/if}}
+        {{/if}}
+
+        <div class="page-content" id="product-listing-container">
+            {{> components/category/product-listing}}
+            {{{region name="category_below_content"}}}
+        </div>
+    </main>
+
+{{/partial}}
+{{> layout/base}}

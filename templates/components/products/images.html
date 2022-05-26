@@ -1,0 +1,30 @@
+<div class="productView-image" data-slide-id="zoom">
+    <div class="MagicZoom" id="zoom" itemprop="image"
+        href=" {{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}">
+        {{> components/common/responsive-img image=product.main_image fallback_size=theme_settings.product_size xlazyload=theme_settings.lazyload_mode default_image=theme_settings.default_image_product otherAttributes="data-main-image" }}
+    </div>
+
+    {{#gt product.images.length 1}}
+        <ul class="MagicZoomSelectors productView-thumbnails">
+            {{#each product.images}}
+                <li class="productView-thumbnail" data-slide-id="zoom" title="{{alt}}" data-zoom-id="zoom"
+                    data-zoom-image="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    data-image="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}">
+                </li>
+            {{/each}}
+        </ul>
+    {{/gt}}
+
+    <div class="productView-image-controls">
+        <button id="productView-image-previous">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+        <button id="productView-image-next">
+            <span class="material-symbols-outlined">
+                arrow_forward
+            </span>
+        </button>
+    </div>
+</div>

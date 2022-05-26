@@ -2,7 +2,7 @@
     background-color: $primary-color;
     display: flex;
     position: relative;
-    z-index: zIndex("highest");
+    z-index: zIndex("higher");
 }
 
 .topbar-list {
@@ -24,16 +24,37 @@
         max-width: $layout-widthMax + ($container-padding * 2);
         padding: 0 ($container-padding * 2);
     }
+
+    .slick-list {
+        width: 100%;
+    }
 }
 
 .topbar-item {
+    display: none;
     font-size: 13px;
     font-weight: 400;
-    margin: 0;
+    margin: 0 3px;
     width: 100%;
 
+    &:first-child {
+        display: block;
+    }
+
+    &.slick-slide {
+        display: block;
+    }
+
     @include breakpoint("medium") {
-        width: unset;
+        display: block;
+
+        &:first-child {
+            text-align: left;
+        }
+
+        &:last-child {
+            text-align: right;
+        }
     }
 
     a {

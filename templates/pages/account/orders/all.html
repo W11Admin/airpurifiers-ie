@@ -1,34 +1,32 @@
 ---
 customer:
     orders:
+        limit: 100
+    wishlists:
         limit: 10
 ---
 
 {{#partial "page"}}
+    <h1 class="page-heading">{{lang 'account.orders.heading' }}</h1>
 
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-<h1 class="page-heading">{{lang 'account.orders.heading' }}</h1>
-{{> components/account/navigation account_page='orders'}}
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
-<div class="account account--fixed">
-    <div class="account-head">
-        {{#if customer.store_credit.value '>' 0}}
-            <div class="alertBox alertBox--storeCredit">
-                {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
-            </div>
-        {{/if}}
-    </div>
-    <div class="account-body">
-        <section class="account-content">
+    <div class="account">
+        {{> components/account/navigation account_page='orders'}}
+
+        <div class="account-body">
             {{#if customer.orders.length}}
-                {{> components/account/orders-list orders=customer.orders}}
-                {{> components/common/small-paginator pagination.orders}}
+                <section class="account-content">
+                    {{> components/account/orders-list orders=customer.orders}}
+                </section>
             {{else}}
-                {{> components/common/alert/alert-info (lang 'account.orders.none')}}
+                <section class="account--fixedSmall">
+                    <p>{{lang 'account.orders.none'}}</p>
+                    <a class="button button--primary" href="/">Continue Shopping</a>
+                </section>
             {{/if}}
-        </section>
+        </div>
     </div>
-</div>
 
 {{/partial}}
 {{> layout/base}}

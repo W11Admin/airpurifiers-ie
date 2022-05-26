@@ -26,6 +26,14 @@ export default class Product extends PageManager {
             }
         });
 
+        $(document).on('click', '#productView-image-previous', () => {
+            MagicZoom.prev('zoom');
+        });
+
+        $(document).on('click', '#productView-image-next', () => {
+            MagicZoom.next('zoom');
+        });
+
         let validator;
 
         // Init collapsible

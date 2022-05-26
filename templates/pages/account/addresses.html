@@ -1,17 +1,33 @@
-{{#partial "page"}}
-    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    <h2 class="page-heading">{{lang 'account.addresses.heading' }}</h2>
-    {{> components/account/navigation account_page='addresses'}}
+---
+customer:
+    wishlists:
+        limit: 10
+---
 
-    <div class="account account--fixedLarge">
+{{#partial "page"}}
+    <h1 class="page-heading">{{lang 'account.addresses.heading' }}</h1>
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    <div class="account">
+        {{> components/account/navigation account_page='addresses'}}
+
         <div class="account-body">
-            {{#if customer.error}}
-                {{>components/common/alert/alert-error customer.error}}
+            {{#if customer.addresses}}
+                {{#if customer.error}}
+                    {{>components/common/alert/alert-error customer.error}}
+                {{/if}}
+                {{#if customer.success}}
+                    {{>components/common/alert/alert-success customer.success}}
+                {{/if}}
+
+                {{> components/account/address-list }}
+            {{else}}
+                <section class="account--fixedSmall">
+                    <p>{{lang 'account.addresses.no_addresses'}}</p>
+                    <a class="button button--primary" href="{{urls.account.add_address}}">Add New Address</a>
+                </section>
             {{/if}}
-            {{#if customer.success}}
-                {{>components/common/alert/alert-success customer.success}}
-            {{/if}}
-            {{> components/account/address-list }}
         </div>
     </div>
 {{/partial}}

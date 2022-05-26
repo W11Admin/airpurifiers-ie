@@ -7,26 +7,70 @@ product:
     related_products:
         limit: {{theme_settings.productpage_related_products_count}}
 ---
+
 {{#partial "amp-style"}}
     {{> components/amp/products/styles }}
 {{/partial}}
+
 {{#partial "amp-scripts"}}
     <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
     <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
     {{#if settings.add_this.buttons}}
-        <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+        <script async custom-element="amp-social-share"
+            src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     {{/if}}
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     {{#if product.videos}}
         <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     {{/if}}
 {{/partial}}
+
 {{#partial "page"}}
     {{> components/amp/common/header }}
-    <div>
-        {{> components/amp/products/product-view}}
+
+    <div class="productView-content">
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+
+        {{#each product.reviews.messages}}
+            {{#if error}}
+                {{> components/common/alert/alert-error error}}
+            {{/if}}
+            {{#if success}}
+                {{> components/common/alert/alert-success success}}
+            {{/if}}
+        {{/each}}
+
+        {{> components/products/images}}
+
+        {{> components/products/details}}
+
+        {{> components/products/description}}
+
+        {{> components/products/specifications}}
+
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+
+        {{#if product.reviews.length}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/if}}
+
+        {{{region name="product_below_content"}}}
+
+        <div id="previewModal" class="modal modal--large" data-reveal>
+            <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+                <span aria-hidden="true">&#215;</span>
+            </a>
+            <div class="modal-content"></div>
+            <div class="loadingOverlay"></div>
+        </div>
     </div>
+
     {{> components/products/schema}}
+
     {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">
             <script type="application/json">
@@ -70,6 +114,7 @@ product:
             </script>
         </amp-analytics>
     {{/if}}
+    
     {{> components/amp/common/footer}}
 {{/partial}}
 {{> layout/amp }}

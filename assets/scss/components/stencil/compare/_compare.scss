@@ -2,131 +2,77 @@
 // COMPARE (CSS)
 // =============================================================================
 
+.comparePopup {
+    align-items: flex-start;
+    background-color: $color-primary;
+    border-radius: $global-radius;
+    bottom: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    left: 30px;
+    max-width: 250px;
+    opacity: 0;
+    padding: spacing("single");
+    padding-top: spacing("half");
+    position: fixed;
+    transition: all 750ms ease;
+    visibility: hidden;
+    z-index: zIndex("high");
 
-// Compare table layout
-// -----------------------------------------------------------------------------
-//
-// 1. Foundation Magellan plugin.
-//
-// -----------------------------------------------------------------------------
-
-.compareTable {
-    border-top: container("border");
-    table-layout: fixed;
-    width: 100%;
-}
-
-.compareTable-row {
-    vertical-align: top;
-
-    + .compareTable-row {
-        .compareTable-heading,
-        .compareTable-item {
-            border-top: container("border");
-        }
-
-        .compareTable-heading:empty {
-            border-top: 0;
-        }
-    }
-}
-
-
-// Compare table headings
-// -----------------------------------------------------------------------------
-
-.compareTable-heading {
-    font-family: fontFamily("headingSans");
-    font-size: fontSize("smaller");
-    font-weight: fontWeight("normal");
-    padding: (spacing("base") + spacing("sixth")) spacing("base");
-    position: relative;
-    text-align: right;
-    width: 0;
-
-    @include breakpoint("medium") {
-        width: grid-calc(3, $total-columns);
-    }
-}
-
-.compareTable-headingText {
-    position: absolute;
-    top: spacing("base") + spacing("sixth");
-    white-space: nowrap;
-
-    @include breakpoint("medium") {
-        position: inherit;
-        top: inherit;
-    }
-}
-
-
-// Compare table item
-// -----------------------------------------------------------------------------
-
-.compareTable-item {
-    padding: (spacing("double") + spacing("sixth")) spacing("base") (spacing("base") + spacing("sixth"));
-
-    @include breakpoint("medium") {
-        padding-top: spacing("base") + spacing("sixth");
-    }
-}
-
-
-// Remove product
-// -----------------------------------------------------------------------------
-
-.compareTable-removeProduct {
-    background-color: container("fill", "dark");
-    border-radius: 50%;
-    height: spacing("single") + spacing("base");
-    position: absolute;
-    right: -(spacing("base"));
-    top: -(spacing("base"));
-    transition: background-color 0.15s ease;
-    width: spacing("single") + spacing("base");
-
-    .icon {
-        fill: stencilColor("icon-color");
-        height: spacing("single");
-        margin-top: spacing("third");
-        width: spacing("single");
-    }
-}
-
-
-// Compare product card
-// -----------------------------------------------------------------------------
-
-.compareTable-product {
-    font-weight: fontWeight("normal");
-    padding: (spacing("single") + spacing("third")) spacing("base") (spacing("base") + spacing("sixth"));
-
-    .card {
-        margin-bottom: 0;
+    &.show {
+        opacity: 1;
+        visibility: visible;
     }
 
-    .card-body {
-        min-height: spacing("single") * 4;
-        padding-top: spacing("base");
+    strong {
+        display: block;
+        font-size: 18px;
+        margin-bottom: spacing("half");
     }
 
-    .card-figure {
-        overflow: visible;
+    div {
+        line-height: 1.5;
     }
-}
-
-
-// Compare action
-// -----------------------------------------------------------------------------
-
-.compareTable-action {
-    padding: 0 spacing("base") spacing("base");
 
     .button {
-        display: block;
-        padding-left: spacing("half");
-        padding-right: spacing("half");
-        width: 100%;
+        background-color: $color-white;
+        margin: 0;
+        margin-top: spacing("single");
+
+        &:hover {
+            background-color: $color-secondary;
+            color: $color-white;
+        }
+    }
+}
+
+// Compare list layout
+// -----------------------------------------------------------------------------
+
+.compareList {
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0; // 1
+    justify-content: center;
+    margin-bottom: spacing("single");
+}
+
+.compareList-item {
+    @include grid-column(12, $float: none);
+    display: inline-block;
+    font-size: fontSize("base"); // 1
+    vertical-align: top;
+
+    @include breakpoint("xsmall") {
+        width: grid-calc(6, $total-columns);
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(4, $total-columns);
     }
 }

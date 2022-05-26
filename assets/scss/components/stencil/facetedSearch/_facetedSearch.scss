@@ -10,28 +10,22 @@
 // -----------------------------------------------------------------------------
 
 .facetedSearch {
-    background-color: $color-greyLightest;
+    background-color: $color-white;
     height: 100%;
-    left: -80px;
+    left: -360px;
     margin: 0;
     max-height: 100vh;
-    max-width: 320px;
+    max-width: 360px;
     opacity: 0;
-    overflow-y: auto;
     position: fixed;
     top: 0;
-    transition: all 500ms ease;
-    -webkit-transition: all 500ms ease;
-    -moz-transition: all 500ms ease;
+    transition: all 750ms ease;
     visibility: hidden;
-    width: 90%;
+    width: calc(100% - 50px);
     z-index: zIndex("highest");
 
-    @include breakpoint("xsmall") {
-        max-width: 350px;
-    }
-
     @include breakpoint("medium") {
+        background-color: $color-greyLightest;
         border-radius: $global-radius;
         left: 0;
         overflow: visible;
@@ -79,10 +73,11 @@
     }
 
     &-selected {
-        margin-bottom: spacing("double");
-        padding: 10px 40px 0 40px;
+        padding: (spacing("single") + spacing("half"));
+        padding-bottom: 0;
 
         @include breakpoint("medium") {
+            margin-bottom: spacing("double");
             padding: 0;
         }
 
@@ -122,10 +117,11 @@
     .sidebarBlock-heading {
         align-items: center;
         display: flex;
-        font-size: 20px;
+        font-size: 0px;
         margin: 0;
 
         @include breakpoint("medium") {
+            font-size: 20px;
             margin: 0 0 spacing("single") 0;
         }
     }
@@ -137,28 +133,22 @@
 
 .facetedSearch-close {
     align-items: center;
+    background-color: $color-primary;
     cursor: pointer;
     display: flex;
     height: 50px;
     justify-content: center;
+    left: 100%;
     margin-left: auto;
-    position: relative;
+    position: absolute;
+    top: 0;
     transition: transform 500ms ease;
     -webkit-transition: transform 500ms ease;
     width: 50px;
 
-    &:hover {
-        transform: scale(1.1);
-
-        &::after,
-        &::before {
-            background-color: $color-primary;
-        }
-    }
-
     &::after,
     &::before {
-        background-color: $color-textBase;
+        background-color: $color-white;
         bottom: auto;
         content: "";
         height: 3px;
@@ -184,9 +174,13 @@
 }
 
 .facetedSearch-navList {
-    padding: 10px 40px 40px 40px;
+    max-height: 100vh;
+    overflow: auto;
+    padding: (spacing("single") + spacing("half"));
 
     @include breakpoint("medium") {
+        max-height: unset;
+        overflow: unset;
         padding: 0;
     }
 }

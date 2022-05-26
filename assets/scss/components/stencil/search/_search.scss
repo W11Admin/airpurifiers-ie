@@ -2,6 +2,191 @@
 // SEARCH
 // =============================================================================
 
+.navUser-action--quickSearch {
+    &::after {
+        content: "";
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        visibility: hidden;
+        width: 100%;
+    }
+
+    &.is-open {
+        &::after {
+            visibility: visible;
+        }
+    }
+}
+
+.dropdown--quickSearch {
+    align-items: center;
+    background-color: $color-white;
+    box-shadow: 0 0 0 3000px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: -170px;
+    transition: all 750ms ease;
+    visibility: hidden;
+    width: 100%;
+    z-index: zIndex("highest");
+
+    &:focus {
+        outline: none;
+    }
+
+    &.is-open {
+        opacity: 1;
+        top: 0;
+        visibility: visible;
+    }
+}
+
+.quickSearch-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+}
+
+.quickSearch-container {
+    max-width: 920px;
+    padding: spacing("single");
+    width: 100%;
+
+    @include breakpoint("small") {
+        padding: spacing("double");
+    }
+
+    .form-fieldset,
+    .form-field {
+        margin: 0;
+    }
+
+    .form-field {
+        background-color: $color-greyLightest;
+        border: 1px solid $color-greyLighter;
+        border-radius: 50px;
+        display: flex;
+    }
+
+    input {
+        background-color: $color-greyLightest;
+        border: 0;
+        font-size: 15px;
+        height: 45px;
+        padding-left: (spacing("single") * 1.2);
+
+        @include breakpoint("small") {
+            font-size: 17px;
+            height: 60px;
+        }
+    }
+
+    .button--icon {
+        display: flex;
+        flex-shrink: 0;
+        height: 45px;
+        margin: 0;
+        padding: 0;
+        width: 45px;
+
+        &::after {
+            display: none;
+        }
+
+        @include breakpoint("small") {
+            height: 60px;
+            width: 60px;
+
+            span {
+                font-size: 32px;
+            }
+        }
+    }
+}
+
+.quickSearch-close {
+    align-items: center;
+    background-color: $color-primary;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    left: 0;
+    justify-content: center;
+    margin-left: auto;
+    position: absolute;
+    top: 100%;
+    transition: transform 500ms ease;
+    -webkit-transition: transform 500ms ease;
+    width: 50px;
+
+    @include breakpoint("small") {
+        right: 0;
+        top: 0;
+    }
+
+    &::after,
+    &::before {
+        background-color: $color-white;
+        bottom: auto;
+        content: "";
+        height: 3px;
+        position: absolute;
+        top: auto;
+        transition: background 500ms ease;
+        -webkit-transition: background 500ms ease;
+        -moz-transition: background 500ms ease;
+        width: 24px;
+    }
+
+    &::after {
+        transform: rotate(-45deg);
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+}
+
+.quickSearchResults {
+    background-color: $color-white;
+    display: none;
+    left: 0;
+    margin-top: spacing("single");
+    max-height: 0;
+    overflow: auto;
+    padding: spacing("single");
+    position: absolute;
+    top: 100%;
+    transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    visibility: hidden;
+    width: 100%;
+    z-index: -1;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+
+    &.is-open {
+        max-height: calc(100vh - 250px);
+        visibility: visible;
+    }
+
+    .button {
+        margin: auto;
+        margin-bottom: spacing("double");
+    }
+}
+
 .search-suggestion {
     margin-bottom: spacing("single") + spacing("third");
 
@@ -20,22 +205,6 @@
 
     .form-row {
         margin-bottom: -(spacing("single"));
-    }
-}
-
-.quickSearchResults {
-    margin-top: spacing("single");
-
-    @include breakpoint("medium") {
-        margin-top: 0;
-    }
-
-    .modal-close {
-        display: none;
-
-        @include breakpoint("medium") {
-            display: block;
-        }
     }
 }
 

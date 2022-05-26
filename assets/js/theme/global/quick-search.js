@@ -4,24 +4,43 @@ import StencilDropDown from './stencil-dropdown';
 import urlUtils from '../common/utils/url-utils';
 
 export default function () {
-    const TOP_STYLING = 'top: 49px;';
     const $quickSearchResults = $('.quickSearchResults');
     const $quickSearchForms = $('[data-quick-search-form]');
     const $quickSearchExpand = $('#quick-search-expand');
-    const $searchQuery = $quickSearchForms.find('[data-search-quick]');
+    const $searchQuery = $('#nav-quick-search');
+    const $body = $('body');
+
     const stencilDropDownExtendables = {
         hide: () => {
             $quickSearchExpand.attr('aria-expanded', false);
-            $searchQuery.trigger('blur');
         },
         show: (event) => {
             $quickSearchExpand.attr('aria-expanded', true);
-            $searchQuery.trigger('focus');
             event.stopPropagation();
         },
     };
-    const stencilDropDown = new StencilDropDown(stencilDropDownExtendables);
-    stencilDropDown.bind($('[data-search="quickSearch"]'), $('#quickSearch'), TOP_STYLING);
+
+    const searchDropDown = {
+        hide: () => {
+            $quickSearchExpand.attr('aria-expanded', false);
+            $quickSearchExpand.removeClass('is-open');
+            $searchQuery.trigger('blur');
+            $body.removeClass('has-activeNavPages');
+            $quickSearchResults.removeClass('is-open');
+        },
+        show: (event) => {
+            $quickSearchExpand.attr('aria-expanded', true);
+            $quickSearchExpand.addClass('is-open');
+            setTimeout(() => {
+                $searchQuery.trigger('select');
+            }, 500);
+            $body.addClass('has-activeNavPages');
+            event.stopPropagation();
+        },
+    };
+    const stencilDropDown = new StencilDropDown(searchDropDown);
+    stencilDropDown.bind($('[data-search="quickSearch"]'), $('#quickSearch'));
+    stencilDropDown.bind($('.quickSearch-close'), $('#quickSearch'));
 
     stencilDropDownExtendables.onBodyClick = (e, $container) => {
         // If the target element has this data tag or one of it's parents, do not close the search results
@@ -57,6 +76,8 @@ export default function () {
                 const itemsFoundCount = $quickSearchResultsCurrent.find('.product').length;
 
                 $quickSearchAriaMessage.text(`${itemsFoundCount} ${predefinedText} ${searchQuery}`);
+
+                $quickSearchResults.addClass('is-open');
 
                 setTimeout(() => {
                     $quickSearchAriaMessage.removeClass('u-hidden');

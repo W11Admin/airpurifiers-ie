@@ -1,19 +1,24 @@
 ---
 customer:
-orders:
-limit: 3
+    orders:
+        limit: 3
+    wishlists:
+        limit: 10
 ---
 {{#partial "page"}}
-<div class="account">
+    <h1 class="account-heading title">{{lang 'account.orders.heading' }}</h1>
+
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-    <h2 class="account-heading title">{{lang 'account.orders.heading' }}</h2>
-    {{> components/account/navigation account_page='orders'}}
-    <div class="account-row orders-row">
-        <section class="orders">
-            {{> components/account/orders-list orders=customer.orders}}
-            {{> components/common/small-paginator pagination.orders}}
-        </section>
+
+    <div class="account">
+        {{> components/account/navigation account_page='orders'}}
+
+        <div class="account-row orders-row">
+            <section class="orders">
+                {{> components/account/orders-list orders=customer.orders}}
+                {{> components/common/small-paginator pagination.orders}}
+            </section>
+        </div>
     </div>
-</div>
 {{/partial}}
 {{> layout/base}}

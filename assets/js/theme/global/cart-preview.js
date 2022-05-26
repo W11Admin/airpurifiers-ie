@@ -10,7 +10,9 @@ export const CartPreviewEvents = {
 export default function (secureBaseUrl, cartId) {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');
-    const $cartDropdown = $('#cart-preview-dropdown');
+    const $cartDropdown = $('.previewCart');
+    const $cartInner = $('.previewCart-inner');
+    const $cartClose = $('.previewCart-close');
     const $cartLoading = $('<div class="loadingOverlay"></div>');
 
     const $body = $('body');
@@ -36,33 +38,35 @@ export default function (secureBaseUrl, cartId) {
         }
     });
 
+    $cartClose.on('click', () => {
+        $body.removeClass('has-activeNavPages');
+        $cart.removeClass('is-open');
+        $cartDropdown.removeClass('is-open');
+    });
+
     $cart.on('click', event => {
         const options = {
             template: 'common/cart-preview',
         };
 
-        // Redirect to full cart page
-        //
-        // https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent
-        // In summary, we recommend looking for the string 'Mobi' anywhere in the User Agent to detect a mobile device.
-        if (/Mobi/i.test(navigator.userAgent)) {
-            return event.stopPropagation();
+        if ($cart.hasClass('is-open')) {
+            $body.removeClass('has-activeNavPages');
+            $cart.removeClass('is-open');
+            $cartDropdown.removeClass('is-open');
+        } else {
+            $body.addClass('has-activeNavPages');
+            $cart.addClass('is-open');
+            $cartDropdown.addClass('is-open');
         }
 
         event.preventDefault();
 
-        $cartDropdown
-            .addClass(loadingClass)
-            .html($cartLoading);
-        $cartLoading
-            .show();
+        $cartInner.addClass(loadingClass).html($cartLoading);
+        $cartLoading.show();
 
         utils.api.cart.getContent(options, (err, response) => {
-            $cartDropdown
-                .removeClass(loadingClass)
-                .html(response);
-            $cartLoading
-                .hide();
+            $cartInner.removeClass(loadingClass).html(response);
+            $cartLoading.hide();
         });
     });
 

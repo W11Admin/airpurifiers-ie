@@ -9,6 +9,10 @@
 .socialLinks {
     @include clearfix;
     @include u-listReset; // 2
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     line-height: lineHeight("largest");
 
     .icon { // 1
@@ -18,12 +22,12 @@
 
         &:hover {
             svg {
-                fill: stencilColor("icon-color-hover");
+                fill: stencilColor("color-secondary");
             }
         }
 
         svg {
-            fill: stencilColor("icon-color");
+            fill: stencilColor("color-primary");
             transition: all 0.15s ease;
         }
     }
@@ -43,7 +47,7 @@
 
     .socialLinks & { // 2
         margin-bottom: spacing("quarter");
-        margin-right: spacing("half");
+        margin-right: spacing("single");
 
         &:last-child {
             margin-right: 0;

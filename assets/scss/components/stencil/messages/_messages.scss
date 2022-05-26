@@ -1,0 +1,68 @@
+// Message Bars & Boxes
+// -----------------------------------------------------------------------------
+
+.message-bar {
+    background-color: $message-bar-backgroundColor;
+    color: $message-bar-textColor;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 10px 15px;
+    text-align: center;
+    width: 100%;
+
+    &:hover {
+        color: $message-bar-highlightColor;
+
+        span {
+            color: $message-bar-textColor;
+        }
+    }
+
+    @include breakpoint("small") {
+        font-size: 14px;
+    }
+
+    span {
+        color: $message-bar-highlightColor;
+        font-weight: 500;
+    }
+}
+
+#message-box {
+    background-color: $message-box-backgroundColor;
+    border-radius: $global-radius;
+    bottom: 30px;
+    color: $message-box-textColor;
+    font-size: 14px;
+    left: 30px;
+    max-width: 500px;
+    opacity: 0;
+    padding: spacing("single");
+    padding-top: (spacing("half") * 1.5);
+    position: fixed;
+    transition: all 750ms ease;
+    visibility: hidden;
+    width: calc(100% - 60px);
+    z-index: 1000000;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    p {
+        margin-bottom: spacing("single");
+    }
+
+    .button {
+        background-color: $color-white;
+        color: $color-textBase;
+        margin: 0;
+
+        &:hover {
+            background-color: $color-textBase;
+            color: $color-white;
+        }
+    }
+}

@@ -14,19 +14,20 @@ brand:
 {{/partial}}
 
 {{#partial "page"}}
-{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
-{{#if brand.image}}
-    <div class="brand-image-container">
-        {{> components/common/responsive-img
-            image=brand.image
-            fallback_size=theme_settings.thumb_size
-            lazyload='disabled'
-        }}
-    </div>
-{{/if}}
 <h1 class="page-heading">{{brand.name}}</h1>
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
 {{{region name="brand_below_header"}}}
 <div class="page">
+    <div class="page-actions mobile">
+        <form class="actionBar" method="get" data-sort-by>
+            <button class="button button--primary facetedSearch-toggle" type="button"
+                name="faceted-search-toggle">Filter</button>
+            {{> components/products/filter sort=pagination.brand.sort}}
+        </form>
+    </div>
+
     <aside class="page-sidebar" id="faceted-search-container">
         {{> components/brand/sidebar}}
     </aside>
